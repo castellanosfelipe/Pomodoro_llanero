@@ -2,7 +2,7 @@
 
 use serde::Deserialize;
 use std::sync::atomic::Ordering;
-use tauri::{AppHandle, Manager, State};
+use tauri::{AppHandle, State};
 
 use crate::AppState;
 
