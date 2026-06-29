@@ -163,10 +163,30 @@ Ya generados en `src-tauri/icons/`. Para regenerarlos desde el SVG:
 npm run tauri icon public/llano.svg
 ```
 
-### CI
+### CI y publicación de versiones
 
-`.github/workflows/build.yml` ejecuta las pruebas y, en una matriz
-(macOS ARM/Intel + Windows), empaqueta con `tauri-action`.
+- `.github/workflows/build.yml` (**ci**): en cada push/PR corre tipos y pruebas
+  (Node, sin toolchain nativo). Rápido y barato.
+- `.github/workflows/release.yml` (**release**): al crear un **tag `v*`** compila
+  en una matriz (macOS Apple Silicon + Intel, Windows) y **publica los binarios
+  en GitHub Releases** con `tauri-action`.
+
+Para publicar una versión:
+
+```bash
+# Sube la versión en package.json / src-tauri/tauri.conf.json y Cargo.toml, luego:
+git tag v0.1.0
+git push origin v0.1.0
+```
+
+El workflow crea un **borrador de Release** con los instaladores adjuntos; revísalo
+y públicalo desde la pestaña *Releases* de GitHub. Para firmar/notarizar macOS,
+define los secrets `APPLE_*` (ver comentarios en `release.yml`). En Windows, los
+binarios sin firmar muestran un aviso de SmartScreen hasta que firmes con
+Authenticode.
+
+> Distribuir la app de escritorio se hace por **GitHub Releases**, no por GitHub
+> Pages/Vercel (esos son para sitios web). Todos los datos siguen siendo locales.
 
 ---
 
