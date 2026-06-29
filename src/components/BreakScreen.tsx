@@ -6,6 +6,7 @@ import { controller } from "../state/controller";
 import { useAppStore } from "../state/store";
 import { useT } from "../hooks/useT";
 import { formatClock } from "../lib/format";
+import { assetUrl } from "../lib/asset";
 
 export function BreakScreen() {
   const t = useT();
@@ -22,7 +23,7 @@ export function BreakScreen() {
       {/* Imagen del animal */}
       {animal && (
         <img
-          src={animal.imagePath}
+          src={assetUrl(animal.imagePath)}
           alt={animal.commonName[lang]}
           className={
             fauna.fullScreenOnBreak

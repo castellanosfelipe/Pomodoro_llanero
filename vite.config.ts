@@ -6,6 +6,10 @@ const host = process.env.TAURI_DEV_HOST;
 
 // https://vitejs.dev/config/
 export default defineConfig(async () => ({
+  // Base de despliegue. Por defecto "/" (Tauri y dev). El workflow de GitHub
+  // Pages define VITE_BASE="/Pomodoro_llanero/" porque sirve bajo subruta.
+  base: process.env.VITE_BASE ?? "/",
+
   plugins: [react()],
 
   // Tauri espera un puerto fijo y falla si no está disponible.

@@ -1,0 +1,43 @@
+name: pages
+
+# Publica la versión web (SPA estática) en GitHub Pages. La app degrada a
+# localStorage/API del navegador cuando no hay Tauri, así que funciona sin
+# backend ni base de datos (sigue siendo local-first: datos en el navegador).
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un despliegue a la vez.
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Build (base de project site)
+        run: npm run build
+        env:
+          VITE_BASE: /Pomodoro_llanero/
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+      - id: deployment
+        uses: actions/deploy-pages@v4

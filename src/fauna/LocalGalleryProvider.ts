@@ -8,12 +8,13 @@
 import type { AnimalAsset } from "../domain/types";
 import type { ImageProvider } from "./ImageProvider";
 import { NonRepeatingPicker } from "./shuffler";
+import { assetUrl } from "../lib/asset";
 
 export type FaunaLoader = () => Promise<AnimalAsset[]>;
 
 /** Loader por defecto: lee el JSON servido desde /public/fauna. */
 export const defaultFaunaLoader: FaunaLoader = async () => {
-  const res = await fetch("/fauna/fauna.json");
+  const res = await fetch(assetUrl("fauna/fauna.json"));
   if (!res.ok) throw new Error(`No se pudo cargar fauna.json (${res.status})`);
   const data = (await res.json()) as { animals: AnimalAsset[] };
   return data.animals;

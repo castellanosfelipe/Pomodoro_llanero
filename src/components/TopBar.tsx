@@ -1,6 +1,7 @@
 /** Barra superior: identidad de la app y navegación entre vistas. */
 import { useAppStore, type View } from "../state/store";
 import { useT } from "../hooks/useT";
+import { assetUrl } from "../lib/asset";
 
 function NavButton({
   active,
@@ -40,7 +41,7 @@ export function TopBar() {
         className="flex items-center gap-2"
         aria-label={t.app.name}
       >
-        <img src="/llano.svg" alt="" className="h-6 w-6" />
+        <img src={assetUrl("llano.svg")} alt="" className="h-6 w-6" />
         <span className="text-sm font-bold text-gray-800 dark:text-gray-100">
           {t.app.name}
         </span>
