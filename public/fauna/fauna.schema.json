@@ -10,14 +10,7 @@
       "type": "array",
       "items": {
         "type": "object",
-        "required": [
-          "id",
-          "commonName",
-          "scientificName",
-          "funFact",
-          "category",
-          "imagePath"
-        ],
+        "required": ["id", "commonName", "category", "imagePath"],
         "properties": {
           "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
           "commonName": { "$ref": "#/$defs/localized" },
@@ -25,7 +18,16 @@
           "funFact": { "$ref": "#/$defs/localized" },
           "category": {
             "type": "string",
-            "enum": ["mamifero", "ave", "reptil", "anfibio", "pez", "insecto"]
+            "enum": [
+              "mamifero",
+              "ave",
+              "reptil",
+              "anfibio",
+              "pez",
+              "insecto",
+              "paisaje",
+              "cultura"
+            ]
           },
           "imagePath": { "type": "string" },
           "credit": { "type": "string" },

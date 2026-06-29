@@ -89,6 +89,9 @@ export const es = {
       catMamifero: "Mamíferos",
       catAve: "Aves",
       catReptil: "Reptiles",
+      catPez: "Peces",
+      catPaisaje: "Paisajes",
+      catCultura: "Cultura",
       showFunFact: "Mostrar dato curioso",
       fullScreen: "Imagen a pantalla completa en descanso",
       generativeWarning:

@@ -1,7 +1,7 @@
 {
   "$schema": "./fauna.schema.json",
   "version": 1,
-  "note": "Imágenes actuales = PLACEHOLDERS generados. Verificar y sustituir por imágenes con licencia (ver README › Licencias de fauna) antes de publicar.",
+  "note": "Imágenes aportadas por el usuario (descargadas de la web). LICENCIAS PENDIENTES DE VERIFICAR antes de distribuir/empaquetar públicamente. Las especies sin foto usan placeholder generado.",
   "animals": [
     {
       "id": "chiguiro",
@@ -15,9 +15,9 @@
         "en": "The world's largest rodent, weighing over 60 kg. Semi-aquatic and highly social, it lives in groups along the Llanos' wetlands."
       },
       "category": "mamifero",
-      "imagePath": "/fauna/images/chiguiro.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "imagePath": "/fauna/images/chiguiro.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     },
     {
       "id": "oso-palmero",
@@ -31,9 +31,9 @@
         "en": "It has no teeth: it laps up to 30,000 ants and termites a day with a sticky tongue about 60 cm long."
       },
       "category": "mamifero",
-      "imagePath": "/fauna/images/oso-palmero.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "imagePath": "/fauna/images/oso-palmero.jpg",
+      "credit": "Foto: Bioparque Los Ocarros (web)",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     },
     {
       "id": "caiman-llanero",
@@ -63,9 +63,9 @@
         "en": "Its vivid red colour comes from carotenoids in the crustaceans it eats; it flies in flocks that paint the wetlands scarlet."
       },
       "category": "ave",
-      "imagePath": "/fauna/images/corocora-roja.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "imagePath": "/fauna/images/corocora-roja.jpg",
+      "credit": "Foto: Hugo Huertas (web)",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     },
     {
       "id": "jabiru",
@@ -95,9 +95,9 @@
         "en": "A river dolphin that turns pink as it matures and uses echolocation to hunt in the murky waters of the Llanos' rivers."
       },
       "category": "mamifero",
-      "imagePath": "/fauna/images/tonina.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "imagePath": "/fauna/images/tonina.jpg",
+      "credit": "Foto: Fundación Omacha (web)",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     },
     {
       "id": "venado-caramerudo",
@@ -111,9 +111,9 @@
         "en": "Bucks regrow their antlers every year; on the open savanna they flash their white tail as an alarm signal when fleeing."
       },
       "category": "mamifero",
-      "imagePath": "/fauna/images/venado-caramerudo.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "imagePath": "/fauna/images/venado-caramerudo.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     },
     {
       "id": "garza-morena",
@@ -175,9 +175,9 @@
         "en": "Its bony shell protects it; it can hold its breath for minutes and cross streams by walking along the bottom."
       },
       "category": "mamifero",
-      "imagePath": "/fauna/images/cachicamo.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "imagePath": "/fauna/images/cachicamo.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     },
     {
       "id": "jaguar",
@@ -191,9 +191,9 @@
         "en": "The largest cat in the Americas, with the most powerful bite for its size; each rosette of its coat is unique."
       },
       "category": "mamifero",
-      "imagePath": "/fauna/images/jaguar.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "imagePath": "/fauna/images/jaguar.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     },
     {
       "id": "anaconda",
@@ -207,9 +207,9 @@
         "en": "One of the heaviest snakes on Earth; an aquatic constrictor that lurks half-submerged in the Llanos' wetlands."
       },
       "category": "reptil",
-      "imagePath": "/fauna/images/anaconda.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "imagePath": "/fauna/images/anaconda.jpg",
+      "credit": "Foto: web (lifeder.com)",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     },
     {
       "id": "espatula-rosada",
@@ -226,6 +226,131 @@
       "imagePath": "/fauna/images/espatula-rosada.svg",
       "credit": "Placeholder generado",
       "license": "Placeholder — pendiente de imagen con licencia"
+    },
+    {
+      "id": "babilla",
+      "commonName": {
+        "es": "Babilla / baba",
+        "en": "Spectacled caiman"
+      },
+      "scientificName": "Caiman crocodilus",
+      "funFact": {
+        "es": "El caimán más común del Llano; un reborde óseo entre los ojos, como unos anteojos, le da su nombre. Convive con el escaso caimán llanero.",
+        "en": "The most common caiman of the Llanos; a bony ridge between its eyes, like spectacles, gives it its name. It shares the wetlands with the rare Orinoco crocodile."
+      },
+      "category": "reptil",
+      "imagePath": "/fauna/images/babilla.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+    },
+    {
+      "id": "guacamaya",
+      "commonName": {
+        "es": "Guacamaya azul y amarilla",
+        "en": "Blue-and-yellow macaw"
+      },
+      "scientificName": "Ara ararauna",
+      "funFact": {
+        "es": "Forma pareja de por vida y anida en huecos de palmas de moriche; su llamado se oye a kilómetros sobre la sabana.",
+        "en": "It mates for life and nests in holes of moriche palms; its call carries for kilometres over the savanna."
+      },
+      "category": "ave",
+      "imagePath": "/fauna/images/guacamaya.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+    },
+    {
+      "id": "danta",
+      "commonName": {
+        "es": "Danta / tapir",
+        "en": "Lowland tapir"
+      },
+      "scientificName": "Tapirus terrestris",
+      "funFact": {
+        "es": "El mamífero terrestre más grande de Suramérica; gran dispersor de semillas, es el 'jardinero' del bosque y la sabana.",
+        "en": "South America's largest land mammal; a great seed disperser, it is the 'gardener' of forest and savanna."
+      },
+      "category": "mamifero",
+      "imagePath": "/fauna/images/danta.jpg",
+      "credit": "Foto: Instituto Humboldt (web)",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+    },
+    {
+      "id": "iguasa",
+      "commonName": {
+        "es": "Iguasa / pato silbón",
+        "en": "White-faced whistling duck"
+      },
+      "scientificName": "Dendrocygna viduata",
+      "funFact": {
+        "es": "Pato de cara blanca que se mueve en bandadas ruidosas y silbantes por los esteros; muy típico del paisaje llanero.",
+        "en": "A white-faced duck that moves in noisy, whistling flocks across the wetlands; a classic Llanos sight."
+      },
+      "category": "ave",
+      "imagePath": "/fauna/images/iguasa.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+    },
+    {
+      "id": "caribe",
+      "commonName": {
+        "es": "Caribe / piraña",
+        "en": "Red-bellied piranha"
+      },
+      "scientificName": "Pygocentrus cariba",
+      "funFact": {
+        "es": "La piraña de la Orinoquia; pese a su fama, suele ser carroñera y cumple un papel clave limpiando los caños.",
+        "en": "The piranha of the Orinoco; despite its reputation, it is often a scavenger that plays a key role keeping the channels clean."
+      },
+      "category": "pez",
+      "imagePath": "/fauna/images/caribe.jpg",
+      "credit": "Foto: web (lifeder.com)",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+    },
+    {
+      "id": "paisaje-atardecer",
+      "commonName": {
+        "es": "Atardecer en el estero",
+        "en": "Sunset over the wetland"
+      },
+      "funFact": {
+        "es": "El Llano se incendia de naranjas al caer el sol tras las palmas de moriche reflejadas en el agua de los esteros.",
+        "en": "The Llanos blaze orange at sunset, behind moriche palms mirrored in the wetland water."
+      },
+      "category": "paisaje",
+      "imagePath": "/fauna/images/paisaje-atardecer.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+    },
+    {
+      "id": "cultura-faena",
+      "commonName": {
+        "es": "Faena llanera",
+        "en": "Llanero ranch work"
+      },
+      "funFact": {
+        "es": "El llanero y su soga: el trabajo de llano y el coleo son el corazón de la cultura de la Orinoquía.",
+        "en": "The llanero and his lasso: cattle work is at the heart of Orinoco culture."
+      },
+      "category": "cultura",
+      "imagePath": "/fauna/images/cultura-faena.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+    },
+    {
+      "id": "cultura-cabalgata",
+      "commonName": {
+        "es": "Cabalgata en la sabana",
+        "en": "Ride across the savanna"
+      },
+      "funFact": {
+        "es": "A caballo se recorre la inmensa sabana; la ruana tricolor y el sombrero son sello del jinete llanero.",
+        "en": "On horseback across the vast savanna; the tricolour ruana and hat are the llanero rider's mark."
+      },
+      "category": "cultura",
+      "imagePath": "/fauna/images/cultura-cabalgata.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
     }
   ]
 }

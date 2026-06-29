@@ -47,7 +47,7 @@ export const DEFAULT_SETTINGS: Settings = {
   },
   fauna: {
     mode: "gallery",
-    categories: ["mamifero", "ave", "reptil"],
+    categories: ["mamifero", "ave", "reptil", "pez", "paisaje", "cultura"],
     showFunFact: true,
     fullScreenOnBreak: true,
     generative: {

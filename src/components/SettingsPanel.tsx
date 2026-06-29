@@ -204,11 +204,14 @@ export function SettingsPanel() {
           <span className="text-sm text-gray-700 dark:text-gray-200">
             {t.settings.fauna.categories}
           </span>
-          <div className="mt-2 flex gap-2">
+          <div className="mt-2 flex flex-wrap gap-2">
             {[
               { id: "mamifero", label: t.settings.fauna.catMamifero },
               { id: "ave", label: t.settings.fauna.catAve },
               { id: "reptil", label: t.settings.fauna.catReptil },
+              { id: "pez", label: t.settings.fauna.catPez },
+              { id: "paisaje", label: t.settings.fauna.catPaisaje },
+              { id: "cultura", label: t.settings.fauna.catCultura },
             ].map((c) => (
               <button key={c.id} onClick={() => toggleCategory(c.id)}
                 aria-pressed={s.fauna.categories.includes(c.id)}

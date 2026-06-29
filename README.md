@@ -172,9 +172,11 @@ npm run tauri icon public/llano.svg
 
 ## 🦫 Fauna del Llano
 
-- Metadatos: [`public/fauna/fauna.json`](public/fauna/fauna.json) (14 especies,
-  nombre común/científico y dato curioso en ES/EN).
-- Imágenes: `public/fauna/images/` — placeholders SVG hasta que añadas tus fotos.
+- Metadatos: [`public/fauna/fauna.json`](public/fauna/fauna.json) — 19 especies +
+  3 escenas (paisaje/cultura), nombre común/científico y dato curioso en ES/EN.
+- Imágenes: `public/fauna/images/` — 16 fotos reales aportadas + 6 placeholders SVG
+  para las especies aún sin foto. **Las fotos tienen licencia pendiente de
+  verificar** (ver abajo).
 
 ### Añadir tus imágenes
 

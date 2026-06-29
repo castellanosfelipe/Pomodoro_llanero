@@ -43,15 +43,31 @@ public/fauna/
 | `jaguar` | Jaguar | `jaguar.jpg` |
 | `anaconda` | Anaconda / güío | `anaconda.jpg` |
 | `espatula-rosada` | Espátula rosada | `espatula-rosada.jpg` |
+| `babilla` | Babilla / baba | `babilla.jpg` |
+| `guacamaya` | Guacamaya azul y amarilla | `guacamaya.jpg` |
+| `danta` | Danta / tapir | `danta.jpg` |
+| `iguasa` | Iguasa / pato silbón | `iguasa.jpg` |
+| `caribe` | Caribe / piraña | `caribe.jpg` |
+| `paisaje-atardecer` | Atardecer en el estero (escena) | `paisaje-atardecer.jpg` |
+| `cultura-faena` | Faena llanera (escena) | `cultura-faena.jpg` |
+| `cultura-cabalgata` | Cabalgata en la sabana (escena) | `cultura-cabalgata.jpg` |
 
-> Si quieres añadir más especies, agrega su objeto en `fauna.json` (con un `id`
-> nuevo) y vuelve a ejecutar `npm run fauna:sync`.
+> Las **escenas** (paisaje/cultura) no llevan nombre científico: en `fauna.json`
+> basta `commonName`, `funFact` y `category` ("paisaje" o "cultura").
+>
+> Para añadir más entradas, agrega su objeto en `fauna.json` (con un `id` nuevo)
+> y vuelve a ejecutar `npm run fauna:sync`.
 
 ## ⚖️ Licencias (importante)
 
-No empaquetes ninguna imagen sin **licencia compatible** (CC0, CC BY, dominio
-público, o propia). Rellena `credit` y `license` en `fauna.json` con la
-atribución exacta que exija la licencia de cada foto.
+**Estado actual:** las 16 fotos incluidas provienen de la web y su licencia está
+**PENDIENTE DE VERIFICAR** (así marcadas en `license` dentro de `fauna.json`).
+Sirven para uso personal/local, pero **no distribuyas ni publiques la app** hasta
+confirmar los derechos de cada imagen o reemplazarlas por unas con licencia clara.
+
+No empaquetes públicamente ninguna imagen sin **licencia compatible** (CC0, CC BY,
+dominio público, o propia). Cuando confirmes una, actualiza `credit` y `license`
+en `fauna.json` con la atribución exacta que exija esa licencia.
 
 ## Placeholders
 

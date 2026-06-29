@@ -162,13 +162,21 @@ export interface StatsSummary {
 
 export type LocalizedText = { es: string; en: string };
 
-/** Metadato de un animal del Llano. Contrato del `ImageProvider`. */
+/**
+ * Metadato de un elemento de la galería del Llano. Contrato del `ImageProvider`.
+ *
+ * Sirve tanto para **especies** (con nombre científico y dato) como para
+ * **escenas** de paisaje/cultura, donde `scientificName` no aplica. Por eso esos
+ * campos son opcionales: la UI los muestra sólo si están presentes.
+ */
 export interface AnimalAsset {
   id: string;
   commonName: LocalizedText;
-  scientificName: string;
-  funFact: LocalizedText;
-  /** Categoría: "mamifero" | "ave" | "reptil" | "anfibio" | ... */
+  /** Nombre científico (sólo especies). */
+  scientificName?: string;
+  /** Dato curioso. Opcional para escenas sin dato. */
+  funFact?: LocalizedText;
+  /** Categoría: "mamifero" | "ave" | "reptil" | "pez" | "paisaje" | "cultura". */
   category: string;
   /** Ruta de imagen relativa a /public (galería) o data URL (generativo). */
   imagePath: string;

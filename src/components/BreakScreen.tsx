@@ -44,11 +44,13 @@ export function BreakScreen() {
         {animal ? (
           <div className="mt-3 max-w-xl rounded-2xl bg-black/40 p-5 backdrop-blur-sm">
             <h2 className="text-3xl font-bold">{animal.commonName[lang]}</h2>
-            <p className="mt-1 text-sm italic opacity-90">
-              <span className="sr-only">{t.fauna.scientificName}: </span>
-              {animal.scientificName}
-            </p>
-            {fauna.showFunFact && (
+            {animal.scientificName && (
+              <p className="mt-1 text-sm italic opacity-90">
+                <span className="sr-only">{t.fauna.scientificName}: </span>
+                {animal.scientificName}
+              </p>
+            )}
+            {fauna.showFunFact && animal.funFact && (
               <p className="mt-3 text-base leading-relaxed opacity-95">
                 <span className="font-semibold">{t.fauna.funFact} </span>
                 {animal.funFact[lang]}

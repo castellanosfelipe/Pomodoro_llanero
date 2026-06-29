@@ -91,6 +91,9 @@ export const en: Dict = {
       catMamifero: "Mammals",
       catAve: "Birds",
       catReptil: "Reptiles",
+      catPez: "Fish",
+      catPaisaje: "Landscapes",
+      catCultura: "Culture",
       showFunFact: "Show fun fact",
       fullScreen: "Full-screen image during break",
       generativeWarning:
