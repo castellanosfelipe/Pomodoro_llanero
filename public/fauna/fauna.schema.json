@@ -1,0 +1,47 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Metadatos de fauna del Llano",
+  "type": "object",
+  "required": ["version", "animals"],
+  "properties": {
+    "version": { "type": "integer" },
+    "note": { "type": "string" },
+    "animals": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "commonName",
+          "scientificName",
+          "funFact",
+          "category",
+          "imagePath"
+        ],
+        "properties": {
+          "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "commonName": { "$ref": "#/$defs/localized" },
+          "scientificName": { "type": "string" },
+          "funFact": { "$ref": "#/$defs/localized" },
+          "category": {
+            "type": "string",
+            "enum": ["mamifero", "ave", "reptil", "anfibio", "pez", "insecto"]
+          },
+          "imagePath": { "type": "string" },
+          "credit": { "type": "string" },
+          "license": { "type": "string" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "localized": {
+      "type": "object",
+      "required": ["es", "en"],
+      "properties": {
+        "es": { "type": "string" },
+        "en": { "type": "string" }
+      }
+    }
+  }
+}
