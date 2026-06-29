@@ -56,7 +56,7 @@ export function SettingsPanel() {
 
   return (
     <div className="flex-1 overflow-y-auto p-6">
-      <h2 className="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+      <h2 className="mb-6 text-xl font-bold" style={{ color: "var(--day-text)" }}>
         {t.settings.title}
       </h2>
 
@@ -137,7 +137,8 @@ export function SettingsPanel() {
         <Row label={t.settings.appearance.accent} htmlFor="accent">
           <input id="accent" type="color" value={s.appearance.accentColor}
             onChange={(e) => appear({ accentColor: e.target.value })}
-            className="h-8 w-12 cursor-pointer rounded border border-gray-300 dark:border-gray-600" />
+            className="h-8 w-12 cursor-pointer rounded border"
+            style={{ borderColor: "var(--day-horizon-from)" }} />
         </Row>
         <Row label={t.settings.appearance.language} htmlFor="lang">
           <SelectField id="lang" value={s.appearance.language}
@@ -190,7 +191,7 @@ export function SettingsPanel() {
         <Row label={t.settings.shortcuts.reset} htmlFor="sc3">
           <ShortcutInput id="sc3" value={s.shortcuts.reset} onChange={(v) => sc({ reset: v })} />
         </Row>
-        <p className="text-xs text-gray-400">{t.settings.shortcuts.hint}</p>
+        <p className="text-xs" style={{ color: "var(--day-text-soft)" }}>{t.settings.shortcuts.hint}</p>
       </Section>
 
       {/* Fauna del Llano */}
@@ -205,7 +206,7 @@ export function SettingsPanel() {
         </Row>
 
         <div>
-          <span className="text-sm text-gray-700 dark:text-gray-200">
+          <span className="text-sm" style={{ color: "var(--day-text)" }}>
             {t.settings.fauna.categories}
           </span>
           <div className="mt-2 flex flex-wrap gap-2">
@@ -222,7 +223,7 @@ export function SettingsPanel() {
                 className={`rounded-full px-3 py-1 text-sm transition-colors ${
                   s.fauna.categories.includes(c.id)
                     ? "accent-bg text-white"
-                    : "border border-gray-300 text-gray-600 dark:border-gray-600 dark:text-gray-300"
+                    : "settings-pill"
                 }`}>
                 {c.label}
               </button>
@@ -241,7 +242,7 @@ export function SettingsPanel() {
 
         {s.fauna.mode === "generative" && (
           <div className="mt-2 space-y-3 rounded-xl border border-llano-dusk/40 bg-llano-dusk/5 p-4">
-            <p className="text-xs text-llano-dusk">{t.settings.fauna.generativeWarning}</p>
+            <p className="text-xs" style={{ color: "var(--day-text)" }}>{t.settings.fauna.generativeWarning}</p>
             <Row label={t.settings.fauna.backend} htmlFor="backend">
               <SelectField id="backend" value={s.fauna.generative.backend}
                 options={[

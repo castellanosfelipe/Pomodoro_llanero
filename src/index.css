@@ -144,6 +144,26 @@ body {
   background-color: rgba(0, 0, 0, 0.06);
 }
 
+/* ── CAMPOS DE AJUSTES ──────────────────────────────────────────────────
+   Atados al ciclo del día para garantizar contraste en cualquier franja:
+   el texto usa --day-text y el campo --day-canvas-mid (ambos de la misma
+   paleta, diseñados para contrastar entre sí). */
+.settings-field {
+  color: var(--day-text);
+  background-color: var(--day-canvas-mid);
+  border: 1px solid var(--day-horizon-from);
+  border-radius: 8px;
+}
+.settings-field::placeholder { color: var(--day-text-soft); opacity: 0.7; }
+
+.settings-pill {
+  color: var(--day-text-soft);
+  border: 1px solid var(--day-horizon-from);
+  background: transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.settings-pill:hover { background-color: rgba(127, 127, 127, 0.12); }
+
 /* ── ACCENT LEGACY (compatibilidad con ajustes / estadísticas) ────────── */
 .accent-bg   { background-color: var(--accent); }
 .accent-text { color: var(--accent); }

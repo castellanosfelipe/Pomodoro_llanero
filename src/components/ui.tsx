@@ -10,7 +10,10 @@ export function Section({
 }) {
   return (
     <section className="mb-8">
-      <h3 className="mb-3 text-sm font-semibold uppercase tracking-wide text-llano-dusk">
+      <h3
+        className="mb-3 text-sm font-semibold uppercase tracking-wide"
+        style={{ color: "var(--day-accent)" }}
+      >
         {title}
       </h3>
       <div className="space-y-3">{children}</div>
@@ -29,7 +32,7 @@ export function Row({
 }) {
   return (
     <div className="flex items-center justify-between gap-4">
-      <label htmlFor={htmlFor} className="text-sm text-gray-700 dark:text-gray-200">
+      <label htmlFor={htmlFor} className="text-sm" style={{ color: "var(--day-text)" }}>
         {label}
       </label>
       {children}
@@ -60,8 +63,8 @@ export function Toggle({
       }`}
     >
       <span
-        className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${
-          checked ? "translate-x-5" : "translate-x-0.5"
+        className={`absolute left-0.5 top-1/2 h-5 w-5 -translate-y-1/2 rounded-full bg-white shadow transition-transform ${
+          checked ? "translate-x-5" : "translate-x-0"
         }`}
       />
     </button>
@@ -95,7 +98,7 @@ export function NumberField({
         const n = Number(e.target.value);
         if (!Number.isNaN(n)) onChange(Math.min(max, Math.max(min, n)));
       }}
-      className="w-20 rounded-md border border-gray-300 bg-white px-2 py-1 text-right text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+      className="settings-field w-20 px-2 py-1 text-right text-sm"
     />
   );
 }
@@ -116,7 +119,7 @@ export function SelectField<T extends string>({
       id={id}
       value={value}
       onChange={(e) => onChange(e.target.value as T)}
-      className="rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+      className="settings-field px-2 py-1 text-sm"
     >
       {options.map((o) => (
         <option key={o.value} value={o.value}>
@@ -170,7 +173,7 @@ export function TextField({
       value={value}
       placeholder={placeholder}
       onChange={(e) => onChange(e.target.value)}
-      className="w-48 rounded-md border border-gray-300 bg-white px-2 py-1 text-sm dark:border-gray-600 dark:bg-gray-800 dark:text-gray-100"
+      className="settings-field w-48 px-2 py-1 text-sm"
     />
   );
 }

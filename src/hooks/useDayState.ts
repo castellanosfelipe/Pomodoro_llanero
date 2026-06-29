@@ -39,7 +39,7 @@ const SLOTS: SlotDef[] = [
     endMin: 7 * 60,
     state: {
       slot: "dawn",
-      faunaKey: "garza",
+      faunaKey: "chiguiro",
       isDark: true,
       canvasColor: "#1A0F08",
       canvasMidColor: "#2E1A0E",
@@ -58,7 +58,7 @@ const SLOTS: SlotDef[] = [
     endMin: 12 * 60,
     state: {
       slot: "morning",
-      faunaKey: "garza",
+      faunaKey: "chiguiro",
       isDark: false,
       canvasColor: "#FDF6E3",
       canvasMidColor: "#F0E4C2",
@@ -96,7 +96,7 @@ const SLOTS: SlotDef[] = [
     endMin: 18 * 60,
     state: {
       slot: "afternoon",
-      faunaKey: "garza",
+      faunaKey: "chiguiro",
       isDark: true,
       canvasColor: "#2A1F0E",
       canvasMidColor: "#3D2B14",
