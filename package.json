@@ -1,6 +1,6 @@
 {
   "name": "pomodoro-llanero",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Pomodoro de escritorio local-first con fauna del Llano colombiano (Orinoquía) como recompensa visual en los descansos.",
   "type": "module",
   "private": true,
