@@ -174,15 +174,21 @@ npm run tauri icon public/llano.svg
 
 - Metadatos: [`public/fauna/fauna.json`](public/fauna/fauna.json) (14 especies,
   nombre común/científico y dato curioso en ES/EN).
-- Imágenes: `public/fauna/images/` — **hoy son placeholders SVG generados** por
-  `scripts/gen-placeholders.mjs`, para no empaquetar imágenes sin licencia.
+- Imágenes: `public/fauna/images/` — placeholders SVG hasta que añadas tus fotos.
+
+### Añadir tus imágenes
+
+1. Deja cada foto en `public/fauna/images/` **nombrada por el `id`** del animal
+   (`chiguiro.jpg`, `jaguar.webp`, …; la tabla de ids está en
+   [`public/fauna/README.md`](public/fauna/README.md)).
+2. Ejecuta `npm run fauna:sync` — cablea cada foto en `fauna.json`, conserva
+   placeholders para las que falten y te indica cuáles necesitan licencia.
+3. Rellena `credit`/`license` de cada foto real en `fauna.json`.
 
 ### ⚖️ Licencias de imágenes (importante)
 
-Antes de publicar con fotos reales, **verifica la licencia de cada imagen** y
-rellena `credit`/`license` en `fauna.json`. Ver
-[`public/fauna/README.md`](public/fauna/README.md). No empaquetes ninguna imagen
-sin licencia compatible (CC0/CC BY/dominio público/propia).
+**Verifica la licencia de cada imagen** antes de publicar. No empaquetes ninguna
+imagen sin licencia compatible (CC0/CC BY/dominio público/propia).
 
 ### Modo generativo (opcional, desactivado por defecto)
 

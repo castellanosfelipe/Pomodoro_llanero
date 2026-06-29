@@ -5,7 +5,10 @@
   "animals": [
     {
       "id": "chiguiro",
-      "commonName": { "es": "Chigüiro", "en": "Capybara" },
+      "commonName": {
+        "es": "Chigüiro",
+        "en": "Capybara"
+      },
       "scientificName": "Hydrochoerus hydrochaeris",
       "funFact": {
         "es": "Es el roedor más grande del mundo: puede pesar más de 60 kg. Semiacuático y muy sociable, vive en grupos a orillas de los esteros del Llano.",
@@ -18,7 +21,10 @@
     },
     {
       "id": "oso-palmero",
-      "commonName": { "es": "Oso palmero (hormiguero gigante)", "en": "Giant anteater" },
+      "commonName": {
+        "es": "Oso palmero (hormiguero gigante)",
+        "en": "Giant anteater"
+      },
       "scientificName": "Myrmecophaga tridactyla",
       "funFact": {
         "es": "No tiene dientes: atrapa hasta 30.000 hormigas y termitas al día con una lengua de unos 60 cm cubierta de saliva pegajosa.",
@@ -31,7 +37,10 @@
     },
     {
       "id": "caiman-llanero",
-      "commonName": { "es": "Caimán llanero", "en": "Orinoco crocodile" },
+      "commonName": {
+        "es": "Caimán llanero",
+        "en": "Orinoco crocodile"
+      },
       "scientificName": "Crocodylus intermedius",
       "funFact": {
         "es": "Cocodrilo endémico de la cuenca del Orinoco y uno de los reptiles más amenazados de América; los machos pueden superar los 5 metros.",
@@ -44,7 +53,10 @@
     },
     {
       "id": "corocora-roja",
-      "commonName": { "es": "Corocora roja", "en": "Scarlet ibis" },
+      "commonName": {
+        "es": "Corocora roja",
+        "en": "Scarlet ibis"
+      },
       "scientificName": "Eudocimus ruber",
       "funFact": {
         "es": "Su intenso color rojo proviene de los carotenoides de los crustáceos que come; vuela en bandadas que tiñen de escarlata los esteros.",
@@ -57,7 +69,10 @@
     },
     {
       "id": "jabiru",
-      "commonName": { "es": "Gabán / jabirú", "en": "Jabiru" },
+      "commonName": {
+        "es": "Gabán / jabirú",
+        "en": "Jabiru"
+      },
       "scientificName": "Jabiru mycteria",
       "funFact": {
         "es": "Es la cigüeña más alta de América, hasta 1,4 m de altura, con el cuello desnudo y una llamativa banda roja en la base.",
@@ -70,7 +85,10 @@
     },
     {
       "id": "tonina",
-      "commonName": { "es": "Tonina / delfín rosado", "en": "Amazon river dolphin" },
+      "commonName": {
+        "es": "Tonina / delfín rosado",
+        "en": "Amazon river dolphin"
+      },
       "scientificName": "Inia geoffrensis",
       "funFact": {
         "es": "Delfín de río que se vuelve rosado al madurar y usa ecolocalización para cazar en las aguas turbias de los ríos llaneros.",
@@ -83,7 +101,10 @@
     },
     {
       "id": "venado-caramerudo",
-      "commonName": { "es": "Venado caramerudo", "en": "White-tailed deer" },
+      "commonName": {
+        "es": "Venado caramerudo",
+        "en": "White-tailed deer"
+      },
       "scientificName": "Odocoileus virginianus",
       "funFact": {
         "es": "El macho renueva sus astas cada año; en la sabana abierta del Llano alza la cola blanca como señal de alarma al huir.",
@@ -96,7 +117,10 @@
     },
     {
       "id": "garza-morena",
-      "commonName": { "es": "Garza morena", "en": "Cocoi heron" },
+      "commonName": {
+        "es": "Garza morena",
+        "en": "Cocoi heron"
+      },
       "scientificName": "Ardea cocoi",
       "funFact": {
         "es": "Es la garza más grande de Sudamérica; pesca inmóvil al acecho en los caños y bajíos del Llano.",
@@ -109,7 +133,10 @@
     },
     {
       "id": "alcaravan",
-      "commonName": { "es": "Alcaraván", "en": "Southern lapwing" },
+      "commonName": {
+        "es": "Alcaraván",
+        "en": "Southern lapwing"
+      },
       "scientificName": "Vanellus chilensis",
       "funFact": {
         "es": "Centinela del Llano: anida en el suelo y delata cualquier intruso con un grito agudo e insistente, sobre todo de noche.",
@@ -122,7 +149,10 @@
     },
     {
       "id": "charapa",
-      "commonName": { "es": "Galápaga / tortuga charapa", "en": "Giant South American river turtle" },
+      "commonName": {
+        "es": "Galápaga / tortuga charapa",
+        "en": "Giant South American river turtle"
+      },
       "scientificName": "Podocnemis expansa",
       "funFact": {
         "es": "La tortuga de río más grande de Sudamérica; las hembras anidan en masa en los playones durante las arribadas de la estación seca.",
@@ -135,7 +165,10 @@
     },
     {
       "id": "cachicamo",
-      "commonName": { "es": "Cachicamo (armadillo)", "en": "Armadillo" },
+      "commonName": {
+        "es": "Cachicamo (armadillo)",
+        "en": "Armadillo"
+      },
       "scientificName": "Dasypus sabanicola",
       "funFact": {
         "es": "Su caparazón óseo lo protege; puede contener la respiración varios minutos y cruzar caños caminando por el fondo.",
@@ -148,7 +181,10 @@
     },
     {
       "id": "jaguar",
-      "commonName": { "es": "Jaguar / tigre mariposo", "en": "Jaguar" },
+      "commonName": {
+        "es": "Jaguar / tigre mariposo",
+        "en": "Jaguar"
+      },
       "scientificName": "Panthera onca",
       "funFact": {
         "es": "El felino más grande de América y el de mordida más potente en proporción a su tamaño; cada roseta de su pelaje es única.",
@@ -161,7 +197,10 @@
     },
     {
       "id": "anaconda",
-      "commonName": { "es": "Anaconda / güío", "en": "Green anaconda" },
+      "commonName": {
+        "es": "Anaconda / güío",
+        "en": "Green anaconda"
+      },
       "scientificName": "Eunectes murinus",
       "funFact": {
         "es": "Una de las serpientes más pesadas del planeta; constrictora acuática que acecha semisumergida en los esteros del Llano.",
@@ -174,7 +213,10 @@
     },
     {
       "id": "espatula-rosada",
-      "commonName": { "es": "Espátula rosada / garza paleta", "en": "Roseate spoonbill" },
+      "commonName": {
+        "es": "Espátula rosada / garza paleta",
+        "en": "Roseate spoonbill"
+      },
       "scientificName": "Platalea ajaja",
       "funFact": {
         "es": "Filtra el agua barriéndola con su pico en forma de cuchara; su tono rosado, como el del flamenco, proviene de la dieta.",
