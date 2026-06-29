@@ -1,255 +1,261 @@
-# 🐆 Pomodoro Llanero
+<div align="center">
+  <img src="public/llano.svg" alt="Logo de Pomodoro Llanero" width="160"/>
 
-Temporizador **Pomodoro de escritorio**, **local-first** (funciona sin internet),
-**totalmente configurable** y sin telemetría, que premia cada descanso con
-imágenes y datos curiosos de la **fauna del Llano colombiano (Orinoquía)**.
+  <h1>Pomodoro Llanero</h1>
+  <p><strong>Concéntrate al ritmo de la sabana: un temporizador Pomodoro de escritorio que premia cada descanso con la fauna del Llano colombiano.</strong></p>
 
-Nativo para **macOS** (Apple Silicon + Intel) y **Windows 10/11** gracias a
-**Tauri 2** (núcleo en Rust + frontend React/TypeScript).
+  ![Version](https://img.shields.io/badge/version-0.2.0-blue)
+  ![Status](https://img.shields.io/badge/status-beta-green)
+  ![License](https://img.shields.io/badge/license-MIT-orange)
+  ![Platform](https://img.shields.io/badge/plataforma-macOS%20%7C%20Windows-lightgrey)
+  ![Local-first](https://img.shields.io/badge/local--first-100%25%20offline-success)
 
----
-
-## ✨ Características
-
-- **Motor Pomodoro de precisión**: máquina de estados (Inactivo, Enfoque,
-  Descanso corto, Descanso largo, Pausado) basada en **timestamps monotónicos**,
-  no en `setInterval`. Sobrevive a **suspender/reactivar** el equipo y al
-  segundo plano sin acumular desfase.
-- **Todo configurable y persistido**: duraciones, pomodoros por ciclo, auto-inicio,
-  notificaciones, sonidos, tic-tac, meta diaria, **modo estricto**, tema
-  claro/oscuro/sistema, color de acento, idioma (ES/EN), comportamiento de
-  ventana, **inicio con el sistema** y **atajos de teclado**.
-- **Bandeja de sistema / barra de menú** con fase y tiempo restante, y controles
-  rápidos (iniciar/pausar, saltar, ajustes, salir).
-- **Notificaciones nativas** al terminar enfoque y descanso.
-- **Fauna del Llano** (el diferenciador): en cada descanso aparece un animal
-  distinto —**sin repetir** hasta agotar el set— con nombre común, nombre
-  científico y un dato curioso. Detrás de la interfaz `ImageProvider`:
-  - **Galería local** (por defecto, 100% offline).
-  - **Generativo** (opcional, desactivado por defecto): modelo local o API.
-- **Estadísticas**: pomodoros completados, tiempo de enfoque, rachas y
-  cumplimiento de meta, con panel diario/semanal.
-- **Accesibilidad**: navegación por teclado, etiquetas ARIA, `prefers-reduced-motion`,
-  contraste.
+</div>
 
 ---
 
-## 🏗️ Arquitectura
+## 📋 Tabla de Contenidos
 
-Separación estricta en capas para que **cambiar de stack de UI no implique
-reescribir el dominio**:
-
-```
-src/
-├── domain/        # Dominio PURO (sin React ni Tauri). 100% testeable en Node.
-│   ├── types.ts          # Settings, Session, AnimalAsset, Stats
-│   ├── timer.ts          # PomodoroEngine (reloj monotónico, máquina de estados)
-│   ├── stats.ts          # Agregación de estadísticas (pura)
-│   └── defaults.ts       # Valores por defecto + mapeos
-├── infra/         # Adaptadores de plataforma detrás de interfaces
-│   ├── clock.ts          # Reloj monotónico consciente de la suspensión
-│   ├── store.ts          # Persistencia de ajustes (Tauri store / localStorage)
-│   ├── stats.ts          # Repositorio SQLite / respaldo localStorage
-│   ├── notifications.ts  # Notificaciones nativas / API del navegador
-│   ├── autostart.ts      # Inicio con el sistema
-│   ├── tray.ts           # Puente con la bandeja
-│   ├── sound.ts          # Síntesis de sonidos (Web Audio)
-│   └── secrets.ts        # Clave de API en el llavero del SO
-├── fauna/         # Función "Fauna del Llano" tras la interfaz ImageProvider
-│   ├── ImageProvider.ts
-│   ├── LocalGalleryProvider.ts
-│   ├── GenerativeProvider.ts
-│   └── shuffler.ts       # Rotación sin repetición
-├── i18n/          # Strings externalizados (ES por defecto, EN)
-├── state/         # Estado de UI (Zustand) + orquestador (controller.ts)
-├── components/    # UI React (anillo, controles, descanso, ajustes, stats)
-└── hooks/
-
-src-tauri/         # Núcleo Rust (ventana, bandeja, plugins, comandos)
-public/fauna/      # fauna.json + imágenes (placeholders generados)
-```
-
-- **Configuración** → store JSON (`tauri-plugin-store`).
-- **Historial/estadísticas** → **SQLite** (`tauri-plugin-sql`); la agregación es
-  una función pura del dominio.
-- El **orquestador** (`src/state/controller.ts`) es el único punto donde se
-  cruzan dominio e infraestructura: posee el motor, reacciona a sus eventos y
-  aplica efectos (notificaciones, sonido, persistencia, fauna).
+- [¿Qué es este proyecto?](#-qué-es-pomodoro-llanero)
+- [Demo en vivo](#-demo-en-vivo)
+- [Características principales](#-características-principales)
+- [Capturas de pantalla](#-capturas-de-pantalla)
+- [Instalación rápida](#-instalación-rápida)
+- [Cómo usar](#-cómo-usar)
+- [Arquitectura](#-arquitectura)
+- [Roadmap](#-roadmap)
+- [Contribuir](#-contribuir)
+- [Licencia](#-licencia)
 
 ---
 
-## 🚀 Puesta en marcha
+## 🎯 ¿Qué es Pomodoro Llanero?
 
-### Requisitos
+**Pomodoro Llanero** es una app de escritorio para concentrarte por bloques de tiempo (la técnica Pomodoro) que convierte cada descanso en un pequeño respiro de naturaleza: aparece un animal distinto del Llano colombiano —la Orinoquía— con su nombre, su nombre científico y un dato curioso. Funciona **100% sin internet** y **sin recoger un solo dato tuyo**.
 
-- **Node.js ≥ 18** y npm.
-- **Rust** (toolchain estable) — sólo para compilar la app de escritorio:
-  <https://www.rust-lang.org/tools/install>
-- Dependencias de sistema de Tauri:
-  <https://v2.tauri.app/start/prerequisites/>
-  - **macOS**: Xcode Command Line Tools.
-  - **Windows**: Microsoft C++ Build Tools + WebView2 (incluido en Win 11).
+### El problema que resuelve
 
-### Instalación
+Las apps de productividad suelen romper tu concentración en lugar de protegerla: notificaciones, cuentas, sincronización en la nube y descansos que terminan en un scroll infinito de redes sociales que te roba más tiempo del que querías.
+
+### La solución
+
+Un temporizador **preciso, privado y sereno**. El descanso no te lanza a otra pantalla adictiva: te muestra un chigüiro, una corocora o una tonina del Llano, te cuenta algo sobre ella y te devuelve, descansado, a la siguiente faena.
+
+### ¿Para quién es?
+
+| Audiencia | Beneficio clave |
+|-----------|----------------|
+| 👩‍💻 **Profesionales y estudiantes** | Bloques de foco a prueba de distracciones, con descansos que reparan en vez de enganchar |
+| 🌿 **Amantes de la naturaleza y la Orinoquía** | Una dosis diaria de fauna y cultura llanera mientras trabajan |
+| 🔒 **Personas celosas de su privacidad** | Cero telemetría, cero cuentas, cero nube: todo vive en tu equipo |
+
+---
+
+## 🎬 Demo en vivo
+
+<!-- TODO: grabar un GIF corto (10–15 s) del flujo principal: iniciar faena → fin de faena → aparece la fauna en el descanso → volver a la faena. -->
+<!-- Guardarlo en docs/media/demo.gif y reemplazar el bloque de abajo por:
+<div align="center">
+  <img src="docs/media/demo.gif" alt="Flujo principal: faena, descanso y fauna del Llano" width="700"/>
+  <p><em>De la faena al descanso: la fauna del Llano aparece como recompensa.</em></p>
+</div>
+-->
+
+> 🎥 **Demo en preparación.** Mientras tanto, puedes probar la versión web (sin shell nativo) clonando el repo y ejecutando `npm run dev`, o descargar el instalador desde [Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases).
+
+---
+
+## ✨ Características principales
+
+| Feature | Descripción |
+|---------|-------------|
+| 🎯 **Temporizador de precisión** | Motor basado en **reloj monotónico** (no en `setInterval`): sobrevive a suspender/reactivar el equipo y al segundo plano sin acumular desfase |
+| 🦫 **Fauna del Llano** | En cada descanso aparece un animal distinto —**sin repetir** hasta agotar el set de 22 especies— con nombre común, científico y un dato curioso |
+| 🔒 **Local-first y privado** | Funciona sin conexión, sin cuentas y **sin telemetría**. Tus datos nunca salen de tu equipo |
+| 🌅 **Identidad llanera viva** | La interfaz respira con el día (amanecer, mediodía, ocaso, noche), con vocabulario propio —*faena*, *descanso*, *siesta llanera*— y fauna ilustrada |
+| ⚙️ **Totalmente configurable** | Duraciones, ciclos, auto-inicio, modo estricto, tema, idioma (ES/EN), bandeja del sistema, inicio con el equipo y atajos de teclado |
+| 📊 **Estadísticas y rachas** | Faenas completadas, tiempo de foco, rachas y cumplimiento de meta diaria, con vista diaria y semanal |
+
+---
+
+## 📸 Capturas de pantalla
+
+<!-- TODO: añadir capturas reales de la UI. Sugerencia de tomas (guardar en docs/media/): -->
+<!-- 1. timer.png       → pantalla principal de la faena (horizonte cielo/tierra) -->
+<!-- 2. break.png       → descanso con la fauna del Llano y su dato curioso -->
+<!-- 3. settings.png    → panel de ajustes -->
+<!-- 4. stats.png       → estadísticas y rachas -->
+<!-- Reemplazar el showcase de abajo por bloques <img src="docs/media/timer.png" .../> -->
+
+> 🖼️ **Capturas de la app en camino.** Por ahora, este es un vistazo a **la recompensa**: parte de la galería de fauna real incluida en la app.
+
+### La recompensa: fauna del Llano
+
+<div align="center">
+  <img src="public/fauna/images/chiguiro.jpg" alt="Chigüiro (capibara) descansando en la orilla" width="240"/>
+  <img src="public/fauna/images/corocora-roja.jpg" alt="Corocora roja, ibis escarlata del Llano" width="240"/>
+  <img src="public/fauna/images/tonina.jpg" alt="Tonina, delfín rosado de río" width="240"/>
+  <br/>
+  <img src="public/fauna/images/jaguar.jpg" alt="Jaguar de la Orinoquía" width="240"/>
+  <img src="public/fauna/images/oso-palmero.jpg" alt="Oso palmero (oso hormiguero gigante)" width="240"/>
+  <img src="public/fauna/images/paisaje-atardecer.jpg" alt="Atardecer en la sabana del Llano" width="240"/>
+  <p><em>Cada descanso muestra una especie distinta con su nombre y un dato curioso.</em></p>
+</div>
+
+---
+
+## 🚀 Instalación rápida
+
+### Opción A — Usuario final (recomendada)
+
+1. Ve a la página de **[Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases)**.
+2. Descarga el instalador para tu sistema:
+   - **macOS Apple Silicon (M1–M4):** `..._aarch64.dmg`
+   - **macOS Intel:** `..._x64.dmg`
+   - **Windows 10/11:** `..._x64-setup.exe` o `..._x64_en-US.msi`
+3. Instala y abre la app.
+
+> 🍏 **macOS — primera apertura.** La app aún no está firmada con Apple, así que macOS puede mostrar *"está dañada / desarrollador no identificado"*. Para autorizarla una sola vez:
+> ```bash
+> xattr -cr "/Applications/Pomodoro Llanero.app" && open "/Applications/Pomodoro Llanero.app"
+> ```
+
+### Opción B — Desde el código fuente
+
+#### Prerrequisitos
+
+- **Node.js** ≥ 18 y npm
+- **Rust** (toolchain estable) — solo para compilar la app nativa → <https://www.rust-lang.org/tools/install>
+- Dependencias de sistema de Tauri → <https://v2.tauri.app/start/prerequisites/>
+
+#### Pasos
 
 ```bash
+# 1. Clonar el repositorio
+git clone https://github.com/castellanosfelipe/Pomodoro_llanero.git
+cd Pomodoro_llanero
+
+# 2. Instalar dependencias
 npm install
+
+# 3a. Ejecutar la app de escritorio NATIVA (requiere Rust)
+npm run tauri:dev
+
+# 3b. O iterar solo la UI en el navegador (sin shell nativo)
+npm run dev
 ```
 
-### Scripts de desarrollo
+✅ Con `npm run tauri:dev` se abre la ventana nativa de **Pomodoro Llanero** listo para tu primera faena.
 
-```bash
-npm test            # Pruebas unitarias del dominio (vitest, corre en Node)
-npm run test:watch  # Pruebas en modo watch
-npm run typecheck   # Comprobación de tipos
-npm run dev         # Frontend en el navegador (sin shell nativo; usa respaldos)
-npm run tauri:dev   # App de escritorio NATIVA (requiere Rust)
-```
-
-> `npm run dev` permite iterar la UI sin compilar Rust: la persistencia usa
-> `localStorage`, y bandeja/notificaciones nativas se degradan a no-ops o a la
-> API del navegador.
+> No hay variables de entorno ni archivo `.env` que configurar: la app es local-first y funciona desde el primer arranque.
 
 ---
 
-## 📦 Empaquetado y firma
+## 💡 Cómo usar
 
-Genera los binarios con:
+### Flujo básico
+
+1. **Inicia una faena** con el botón _Iniciar faena_ (o tu atajo de teclado).
+2. Trabaja concentrado hasta que suene el fin de la faena.
+3. Llega el **descanso**: aparece un animal del Llano con su dato curioso. Respira.
+4. Tras varias faenas, te ganas la **siesta llanera** (descanso largo). El ciclo se reinicia.
+
+### Comandos para desarrollo
 
 ```bash
-npm run tauri:build
+npm test            # Pruebas unitarias del dominio (Vitest, corre en Node)
+npm run test:watch  # Pruebas en modo watch
+npm run typecheck   # Comprobación de tipos (tsc --noEmit)
+npm run dev         # Frontend en el navegador (persistencia con localStorage)
+npm run tauri:dev   # App de escritorio nativa (requiere Rust)
 ```
 
-Los artefactos quedan en `src-tauri/target/release/bundle/`.
-
-### macOS (Apple Silicon + Intel)
+### Empaquetar binarios
 
 ```bash
 # Para tu arquitectura nativa
 npm run tauri:build
 
-# Targets explícitos (instala antes los targets de Rust)
+# Targets explícitos de macOS (instala antes los targets de Rust)
 rustup target add aarch64-apple-darwin x86_64-apple-darwin
 npm run tauri:build -- --target aarch64-apple-darwin   # Apple Silicon → .dmg/.app
 npm run tauri:build -- --target x86_64-apple-darwin    # Intel        → .dmg/.app
 ```
 
-Firma y notarización (opcional, para distribución fuera de la Mac App Store):
+Los artefactos quedan en `src-tauri/target/release/bundle/`.
+
+### Personalizar la galería de fauna
+
+Las especies viven en [`public/fauna/fauna.json`](public/fauna/fauna.json) (validado contra un esquema JSON). Edítalo para añadir tus propios animales, imágenes y datos curiosos, y sincroniza con:
 
 ```bash
-export APPLE_CERTIFICATE="..."            # certificado Developer ID (base64)
-export APPLE_CERTIFICATE_PASSWORD="..."
-export APPLE_SIGNING_IDENTITY="Developer ID Application: Tu Nombre (TEAMID)"
-export APPLE_ID="tu@apple.id"
-export APPLE_PASSWORD="app-specific-password"
-export APPLE_TEAM_ID="TEAMID"
-npm run tauri:build
+npm run fauna:sync
 ```
-
-### Windows 10/11
-
-```powershell
-npm run tauri:build   # genera .msi (WiX) y .exe (NSIS)
-```
-
-Firma con certificado de Authenticode (opcional): configura
-`tauri.conf.json › bundle.windows.certificateThumbprint` o usa `signtool`.
-
-### Iconos
-
-Ya generados en `src-tauri/icons/`. Para regenerarlos desde el SVG:
-
-```bash
-npm run tauri icon public/llano.svg
-```
-
-### CI y publicación de versiones
-
-- `.github/workflows/build.yml` (**ci**): en cada push/PR corre tipos y pruebas
-  (Node, sin toolchain nativo). Rápido y barato.
-- `.github/workflows/release.yml` (**release**): al crear un **tag `v*`** compila
-  en una matriz (macOS Apple Silicon + Intel, Windows) y **publica los binarios
-  en GitHub Releases** con `tauri-action`.
-
-Para publicar una versión:
-
-```bash
-# Sube la versión en package.json / src-tauri/tauri.conf.json y Cargo.toml, luego:
-git tag v0.1.0
-git push origin v0.1.0
-```
-
-El workflow crea un **borrador de Release** con los instaladores adjuntos; revísalo
-y públicalo desde la pestaña *Releases* de GitHub. Para firmar/notarizar macOS,
-define los secrets `APPLE_*` (ver comentarios en `release.yml`). En Windows, los
-binarios sin firmar muestran un aviso de SmartScreen hasta que firmes con
-Authenticode.
-
-> Distribuir la app de escritorio se hace por **GitHub Releases**, no por GitHub
-> Pages/Vercel (esos son para sitios web). Todos los datos siguen siendo locales.
 
 ---
 
-## 🦫 Fauna del Llano
+## 🏗️ Arquitectura
 
-- Metadatos: [`public/fauna/fauna.json`](public/fauna/fauna.json) — 19 especies +
-  3 escenas (paisaje/cultura), nombre común/científico y dato curioso en ES/EN.
-- Imágenes: `public/fauna/images/` — 16 fotos reales del Llano + 6 placeholders SVG
-  para las especies aún sin foto. Derechos de uso y publicación **confirmados por
-  el titular del proyecto**; se conserva el crédito de origen.
+Separación estricta en capas para que **cambiar de stack de UI no implique reescribir el dominio**. El dominio es TypeScript puro —sin React ni Tauri— y 100% testeable en Node.
 
-### Añadir tus imágenes
+### Stack tecnológico
 
-1. Deja cada foto en `public/fauna/images/` **nombrada por el `id`** del animal
-   (`chiguiro.jpg`, `jaguar.webp`, …; la tabla de ids está en
-   [`public/fauna/README.md`](public/fauna/README.md)).
-2. Ejecuta `npm run fauna:sync` — cablea cada foto en `fauna.json`, conserva
-   placeholders para las que falten y te indica cuáles necesitan licencia.
-3. Rellena `credit`/`license` de cada foto real en `fauna.json`.
+| Capa | Tecnología | Propósito |
+|------|-----------|-----------|
+| **Interfaz** | React 18 + TypeScript + Tailwind CSS + Zustand | UI reactiva, estado de presentación y ciclo visual del día |
+| **Núcleo nativo** | Tauri 2 (Rust) | Ventana, bandeja del sistema, plugins y empaquetado firmable |
+| **Dominio (puro)** | TypeScript + Vitest | Motor Pomodoro (reloj monotónico), estadísticas y máquina de estados |
+| **Ajustes** | `tauri-plugin-store` (JSON) | Persistencia de la configuración del usuario |
+| **Historial** | `tauri-plugin-sql` (SQLite) | Sesiones y estadísticas; la agregación es una función pura |
+| **Plataforma** | Notificaciones, autostart, OS, keyring | Integración nativa detrás de interfaces, con respaldos para la web |
 
-### ⚖️ Licencias de imágenes
+> El **orquestador** ([`src/state/controller.ts`](src/state/controller.ts)) es el único punto donde se cruzan dominio e infraestructura: posee el motor, reacciona a sus eventos y aplica efectos (notificaciones, sonido, persistencia, fauna).
 
-El titular del proyecto **confirma los derechos de uso y publicación** de las
-imágenes incluidas; cada entrada conserva su `credit` de origen en `fauna.json`.
-Si en el futuro añades nuevas imágenes, asegúrate igualmente de tener sus derechos
-(CC0/CC BY/dominio público/propias) y declara `credit`/`license`.
-
-### Modo generativo (opcional, desactivado por defecto)
-
-Detrás de la misma interfaz `ImageProvider`. Dos backends:
-- **Local**: integra un runtime de difusión (p. ej. Stable Diffusion) en
-  `src-tauri/src/commands.rs::generate_fauna_image` (mantiene todo offline).
-- **API**: la clave del usuario se guarda en el **llavero del sistema**
-  (Keychain/Credential Manager), nunca en el JSON de configuración.
-
-Si la generación falla o está desactivada, la app **degrada con elegancia** a la
-imagen local. Prioridad siempre a la opción local/offline.
+Para el detalle de decisiones de diseño, ver [`docs/DECISIONS.md`](docs/DECISIONS.md).
 
 ---
 
-## 🔒 Privacidad
+## 🗺️ Roadmap
 
-Local-first, **cero telemetría**, sin red obligatoria. Todos los datos
-(configuración y estadísticas) viven en tu equipo. La única salida de red posible
-es el modo generativo por API, que es **opt-in** y requiere tu propia clave.
+### ✅ Completado
+- [x] Motor Pomodoro de precisión (reloj monotónico, máquina de estados)
+- [x] Galería de fauna local sin repetición (22 especies) con datos curiosos
+- [x] Ajustes completos: duraciones, modo estricto, tema, idioma ES/EN, atajos
+- [x] Bandeja del sistema, notificaciones nativas e inicio con el equipo
+- [x] Estadísticas, rachas y meta diaria (SQLite)
+- [x] Bloqueo de pantalla durante el descanso (pantalla completa)
+- [x] Rediseño con identidad llanera (ciclo del día, fauna ilustrada)
+- [x] Instaladores para macOS (Apple Silicon + Intel) y Windows
+
+### 🔄 En progreso
+- [ ] Firma y notarización de la app de macOS (Developer ID) y opción Homebrew Cask
+- [ ] Capturas y GIF de demostración de la interfaz
+
+### 🔮 Próximamente
+- [ ] Modo de imágenes generativo pulido (modelo local / API, opt-in)
+- [ ] Ampliar el catálogo de especies y datos curiosos
+- [ ] Explorar soporte para Linux
 
 ---
 
-## 🧪 Pruebas
+## 🤝 Contribuir
 
-El dominio (motor del temporizador, agregación de estadísticas y rotación de
-fauna) está cubierto por pruebas que corren en Node sin toolchain nativo:
+¡Las contribuciones son bienvenidas! Puedes ayudar con código, nuevas especies para la galería, traducciones o reportando bugs.
 
-```bash
-npm test
-```
+1. Haz un fork y crea una rama: `git checkout -b mi-mejora`
+2. Asegúrate de que pasan las pruebas: `npm test && npm run typecheck`
+3. Abre un Pull Request describiendo el cambio
 
-Incluyen precisión tras suspensión, ciclo de descanso largo, modo estricto,
-auto-inicio, saltar fase, rachas/meta y rotación sin repetición.
+> ⚠️ **Nota de estilo del proyecto:** los commits y Pull Requests deben atribuirse únicamente a su autor humano. No incluyas co-autoría ni firmas de herramientas de IA.
 
 ---
 
 ## 📄 Licencia
 
-Código bajo licencia MIT (ver [`LICENSE`](LICENSE)). Las imágenes de fauna tienen
-su propia licencia (ver arriba).
+**MIT** — consulta [`LICENSE`](./LICENSE) para más detalles.
+
+---
+
+<div align="center">
+  <p>Hecho con ❤️ y orgullo llanero por <a href="https://github.com/castellanosfelipe">castellanosfelipe</a></p>
+</div>
