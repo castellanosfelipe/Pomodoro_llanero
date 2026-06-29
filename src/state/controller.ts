@@ -46,28 +46,32 @@ export class AppController {
   // -------------------------------------------------------------------------
 
   async bootstrap(): Promise<void> {
+    // loadSettings() ya tiene fallback interno a DEFAULT_SETTINGS.
     this.settings = await loadSettings();
 
+    // El motor es puro — nunca lanza.
     this.engine = new PomodoroEngine(
       toEngineConfig(this.settings.timer),
       createMonotonicClock(),
     );
     this.engine.subscribe((event, _state) => this.onEngineEvent(event));
 
-    await getStatsRepo().init();
-    await this.rebuildProvider();
+    // Plugins nativos: toleramos fallos para que la app siempre arranque.
+    try { await getStatsRepo().init(); } catch (e) { console.warn("[stats]", e); }
+    try { await this.rebuildProvider(); } catch (e) { console.warn("[fauna]", e); }
     this.applyAppearance();
-    await this.applyWindowSettings();
-    await setCloseToTray(this.settings.window.minimizeToTray);
+    try { await this.applyWindowSettings(); } catch (e) { console.warn("[window]", e); }
+    try { await setCloseToTray(this.settings.window.minimizeToTray); } catch (e) { console.warn("[tray]", e); }
     void onTrayAction((action) => this.handleTrayAction(action));
 
     this.publishState();
     this.updateTray();
-    await this.refreshStats();
+    try { await this.refreshStats(); } catch (e) { console.warn("[stats refresh]", e); }
 
     this.startTickLoop();
     this.bindCatchUp();
 
+    // Siempre se alcanza, incluso si los plugins nativos fallaron.
     useAppStore.setState({ settings: this.settings, ready: true });
   }
 
