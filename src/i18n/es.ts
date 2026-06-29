@@ -74,6 +74,7 @@ export const es = {
       minimizeToTray: "Minimizar a la bandeja",
       alwaysOnTop: "Siempre visible",
       startOnLogin: "Iniciar con el sistema",
+      blockOnBreak: "Bloquear pantalla durante el descanso",
     },
     shortcuts: {
       startPause: "Iniciar / Pausar",

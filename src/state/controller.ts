@@ -25,6 +25,8 @@ import {
   updateTrayTitle,
   setCloseToTray,
   onTrayAction,
+  enterBreakBlock,
+  exitBreakBlock,
 } from "../infra";
 import { createFaunaProvider, type ImageProvider } from "../fauna";
 import { getDict } from "../i18n";
@@ -40,6 +42,7 @@ export class AppController {
   private tickHandle: number | null = null;
   private phaseStartWall = 0;
   private lastTrayText = "";
+  private breakBlocked = false;
 
   // -------------------------------------------------------------------------
   // Arranque
@@ -128,6 +131,12 @@ export class AppController {
       JSON.stringify(previous.fauna) !== JSON.stringify(this.settings.fauna);
     if (faunaChanged) await this.rebuildProvider();
 
+    // Si el usuario desactiva blockOnBreak mientras hay un descanso activo, salir.
+    if (!this.settings.window.blockOnBreak && this.breakBlocked) {
+      this.breakBlocked = false;
+      void exitBreakBlock(this.settings.window.alwaysOnTop);
+    }
+
     // Tic-tac y persistencia.
     this.updateTicking();
     await saveSettings(this.settings);
@@ -151,6 +160,7 @@ export class AppController {
         }
         if (event.to !== "focus") void this.pickAnimal();
         this.updateTicking();
+        this.applyBreakBlock(event.to);
         break;
 
       case "phaseCompleted":
@@ -220,6 +230,17 @@ export class AppController {
   // -------------------------------------------------------------------------
   // Apariencia / ventana
   // -------------------------------------------------------------------------
+
+  private applyBreakBlock(phase: string): void {
+    const onBreak = phase === "shortBreak" || phase === "longBreak";
+    if (this.settings.window.blockOnBreak && onBreak && !this.breakBlocked) {
+      this.breakBlocked = true;
+      void enterBreakBlock();
+    } else if ((!onBreak || !this.settings.window.blockOnBreak) && this.breakBlocked) {
+      this.breakBlocked = false;
+      void exitBreakBlock(this.settings.window.alwaysOnTop);
+    }
+  }
 
   private applyAppearance(): void {
     if (typeof document === "undefined") return;

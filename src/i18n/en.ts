@@ -76,6 +76,7 @@ export const en: Dict = {
       minimizeToTray: "Minimize to tray",
       alwaysOnTop: "Always on top",
       startOnLogin: "Start on login",
+      blockOnBreak: "Block screen during breaks",
     },
     shortcuts: {
       startPause: "Start / Pause",

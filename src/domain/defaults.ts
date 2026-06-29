@@ -39,6 +39,7 @@ export const DEFAULT_SETTINGS: Settings = {
     minimizeToTray: true,
     alwaysOnTop: false,
     startOnLogin: false,
+    blockOnBreak: false,
   },
   shortcuts: {
     startPause: "CmdOrCtrl+Shift+Space",

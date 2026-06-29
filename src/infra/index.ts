@@ -5,7 +5,7 @@ export { getSettingsStore, loadSettings, saveSettings } from "./store";
 export { getNotifier } from "./notifications";
 export { getStatsRepo } from "./stats";
 export { setAutostart, isAutostartEnabled } from "./autostart";
-export { setAlwaysOnTop, showAndFocusWindow } from "./window";
+export { setAlwaysOnTop, showAndFocusWindow, enterBreakBlock, exitBreakBlock } from "./window";
 export { updateTrayTitle, setCloseToTray, onTrayAction } from "./tray";
 export { tauriGenerate } from "./generate";
 export {

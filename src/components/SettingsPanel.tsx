@@ -172,6 +172,10 @@ export function SettingsPanel() {
           <Toggle id="sol" label={t.settings.window.startOnLogin}
             checked={s.window.startOnLogin} onChange={(v) => win({ startOnLogin: v })} />
         </Row>
+        <Row label={t.settings.window.blockOnBreak} htmlFor="bob">
+          <Toggle id="bob" label={t.settings.window.blockOnBreak}
+            checked={s.window.blockOnBreak} onChange={(v) => win({ blockOnBreak: v })} />
+        </Row>
       </Section>
 
       {/* Atajos */}

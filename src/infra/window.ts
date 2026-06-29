@@ -16,3 +16,24 @@ export async function showAndFocusWindow(): Promise<void> {
   await w.show();
   await w.setFocus();
 }
+
+/** Activa el modo bloqueo: ventana a pantalla completa y siempre encima. */
+export async function enterBreakBlock(): Promise<void> {
+  if (!isTauri()) return;
+  const { getCurrentWindow } = await import("@tauri-apps/api/window");
+  const w = getCurrentWindow();
+  await w.setAlwaysOnTop(true);
+  await w.setFullscreen(true);
+}
+
+/**
+ * Desactiva el modo bloqueo: sale de pantalla completa y restaura la
+ * preferencia `alwaysOnTop` del usuario.
+ */
+export async function exitBreakBlock(alwaysOnTop: boolean): Promise<void> {
+  if (!isTauri()) return;
+  const { getCurrentWindow } = await import("@tauri-apps/api/window");
+  const w = getCurrentWindow();
+  await w.setFullscreen(false);
+  await w.setAlwaysOnTop(alwaysOnTop);
+}

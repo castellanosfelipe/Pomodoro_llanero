@@ -76,6 +76,8 @@ export interface WindowSettings {
   alwaysOnTop: boolean;
   /** Iniciar con el sistema (Login Items macOS / inicio Windows). */
   startOnLogin: boolean;
+  /** Poner la ventana en pantalla completa durante los descansos. */
+  blockOnBreak: boolean;
 }
 
 export interface ShortcutSettings {
