@@ -67,9 +67,11 @@ mayor tamaño/recursos (local) o dependencia de red y clave propia (API). Por es
 no es el predeterminado. Ante cualquier fallo, **degradación elegante** a la
 imagen local.
 
-**Imágenes = placeholders por ahora.** Para no incumplir licencias, las imágenes
-se generan con `scripts/gen-placeholders.mjs`. Sustituirlas requiere verificar y
-declarar la licencia de cada foto (ver `public/fauna/README.md`).
+**Imágenes.** La galería incluye 16 fotos del Llano (especies + escenas de
+paisaje/cultura) con derechos de uso y publicación **confirmados por el titular
+del proyecto**; cada una conserva su crédito de origen. Las 6 especies sin foto
+usan un placeholder SVG generado (`scripts/placeholder.mjs`). El flujo para
+añadir/actualizar imágenes es `npm run fauna:sync` (ver `public/fauna/README.md`).
 
 ## 6. Seguridad de la clave de API
 
@@ -110,7 +112,8 @@ movimiento.
 
 ## Limitaciones conocidas / trabajo futuro
 
-- Las imágenes de fauna son placeholders hasta integrar un set con licencia.
+- Fauna: 16 fotos con derechos confirmados por el titular; 6 especies aún en
+  placeholder a la espera de su foto.
 - El backend generativo (`generate_fauna_image`) es un stub que devuelve `None`
   (degradación a galería). Falta cablear un runtime local o un proveedor API.
 - Atajos globales del sistema (fuera de foco) quedan como mejora opcional.

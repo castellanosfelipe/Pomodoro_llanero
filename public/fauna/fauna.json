@@ -1,7 +1,7 @@
 {
   "$schema": "./fauna.schema.json",
   "version": 1,
-  "note": "Imágenes aportadas por el usuario (descargadas de la web). LICENCIAS PENDIENTES DE VERIFICAR antes de distribuir/empaquetar públicamente. Las especies sin foto usan placeholder generado.",
+  "note": "Imágenes del Llano con derechos de uso y publicación confirmados por el titular del proyecto. Se conserva el crédito de origen. Las especies sin foto usan placeholder generado (propio).",
   "animals": [
     {
       "id": "chiguiro",
@@ -17,7 +17,7 @@
       "category": "mamifero",
       "imagePath": "/fauna/images/chiguiro.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "oso-palmero",
@@ -33,7 +33,7 @@
       "category": "mamifero",
       "imagePath": "/fauna/images/oso-palmero.jpg",
       "credit": "Foto: Bioparque Los Ocarros (web)",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "caiman-llanero",
@@ -49,7 +49,7 @@
       "category": "reptil",
       "imagePath": "/fauna/images/caiman-llanero.svg",
       "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "license": "Placeholder generado (propio)"
     },
     {
       "id": "corocora-roja",
@@ -65,7 +65,7 @@
       "category": "ave",
       "imagePath": "/fauna/images/corocora-roja.jpg",
       "credit": "Foto: Hugo Huertas (web)",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "jabiru",
@@ -81,7 +81,7 @@
       "category": "ave",
       "imagePath": "/fauna/images/jabiru.svg",
       "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "license": "Placeholder generado (propio)"
     },
     {
       "id": "tonina",
@@ -97,7 +97,7 @@
       "category": "mamifero",
       "imagePath": "/fauna/images/tonina.jpg",
       "credit": "Foto: Fundación Omacha (web)",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "venado-caramerudo",
@@ -113,7 +113,7 @@
       "category": "mamifero",
       "imagePath": "/fauna/images/venado-caramerudo.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "garza-morena",
@@ -129,7 +129,7 @@
       "category": "ave",
       "imagePath": "/fauna/images/garza-morena.svg",
       "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "license": "Placeholder generado (propio)"
     },
     {
       "id": "alcaravan",
@@ -145,7 +145,7 @@
       "category": "ave",
       "imagePath": "/fauna/images/alcaravan.svg",
       "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "license": "Placeholder generado (propio)"
     },
     {
       "id": "charapa",
@@ -161,7 +161,7 @@
       "category": "reptil",
       "imagePath": "/fauna/images/charapa.svg",
       "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "license": "Placeholder generado (propio)"
     },
     {
       "id": "cachicamo",
@@ -177,7 +177,7 @@
       "category": "mamifero",
       "imagePath": "/fauna/images/cachicamo.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "jaguar",
@@ -193,7 +193,7 @@
       "category": "mamifero",
       "imagePath": "/fauna/images/jaguar.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "anaconda",
@@ -209,7 +209,7 @@
       "category": "reptil",
       "imagePath": "/fauna/images/anaconda.jpg",
       "credit": "Foto: web (lifeder.com)",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "espatula-rosada",
@@ -225,7 +225,7 @@
       "category": "ave",
       "imagePath": "/fauna/images/espatula-rosada.svg",
       "credit": "Placeholder generado",
-      "license": "Placeholder — pendiente de imagen con licencia"
+      "license": "Placeholder generado (propio)"
     },
     {
       "id": "babilla",
@@ -241,7 +241,7 @@
       "category": "reptil",
       "imagePath": "/fauna/images/babilla.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "guacamaya",
@@ -257,7 +257,7 @@
       "category": "ave",
       "imagePath": "/fauna/images/guacamaya.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "danta",
@@ -273,7 +273,7 @@
       "category": "mamifero",
       "imagePath": "/fauna/images/danta.jpg",
       "credit": "Foto: Instituto Humboldt (web)",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "iguasa",
@@ -289,7 +289,7 @@
       "category": "ave",
       "imagePath": "/fauna/images/iguasa.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "caribe",
@@ -305,7 +305,7 @@
       "category": "pez",
       "imagePath": "/fauna/images/caribe.jpg",
       "credit": "Foto: web (lifeder.com)",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "paisaje-atardecer",
@@ -320,7 +320,7 @@
       "category": "paisaje",
       "imagePath": "/fauna/images/paisaje-atardecer.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "cultura-faena",
@@ -335,7 +335,7 @@
       "category": "cultura",
       "imagePath": "/fauna/images/cultura-faena.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "cultura-cabalgata",
@@ -350,7 +350,7 @@
       "category": "cultura",
       "imagePath": "/fauna/images/cultura-cabalgata.jpg",
       "credit": "Imagen de web — origen sin confirmar",
-      "license": "Pendiente de verificar licencia (uso personal; no distribuir sin permiso)"
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     }
   ]
 }

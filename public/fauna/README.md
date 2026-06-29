@@ -58,16 +58,14 @@ public/fauna/
 > Para añadir más entradas, agrega su objeto en `fauna.json` (con un `id` nuevo)
 > y vuelve a ejecutar `npm run fauna:sync`.
 
-## ⚖️ Licencias (importante)
+## ⚖️ Licencias
 
-**Estado actual:** las 16 fotos incluidas provienen de la web y su licencia está
-**PENDIENTE DE VERIFICAR** (así marcadas en `license` dentro de `fauna.json`).
-Sirven para uso personal/local, pero **no distribuyas ni publiques la app** hasta
-confirmar los derechos de cada imagen o reemplazarlas por unas con licencia clara.
+**Estado actual:** el titular del proyecto **confirma los derechos de uso y
+publicación** de las 16 fotos incluidas (así marcado en `license` dentro de
+`fauna.json`). Se conserva el `credit` de origen de cada una.
 
-No empaquetes públicamente ninguna imagen sin **licencia compatible** (CC0, CC BY,
-dominio público, o propia). Cuando confirmes una, actualiza `credit` y `license`
-en `fauna.json` con la atribución exacta que exija esa licencia.
+Si añades nuevas imágenes, asegúrate de tener sus derechos (CC0, CC BY, dominio
+público o propias) y declara `credit`/`license` con la atribución que corresponda.
 
 ## Placeholders
 

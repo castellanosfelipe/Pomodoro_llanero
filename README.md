@@ -194,9 +194,9 @@ Authenticode.
 
 - Metadatos: [`public/fauna/fauna.json`](public/fauna/fauna.json) — 19 especies +
   3 escenas (paisaje/cultura), nombre común/científico y dato curioso en ES/EN.
-- Imágenes: `public/fauna/images/` — 16 fotos reales aportadas + 6 placeholders SVG
-  para las especies aún sin foto. **Las fotos tienen licencia pendiente de
-  verificar** (ver abajo).
+- Imágenes: `public/fauna/images/` — 16 fotos reales del Llano + 6 placeholders SVG
+  para las especies aún sin foto. Derechos de uso y publicación **confirmados por
+  el titular del proyecto**; se conserva el crédito de origen.
 
 ### Añadir tus imágenes
 
@@ -207,10 +207,12 @@ Authenticode.
    placeholders para las que falten y te indica cuáles necesitan licencia.
 3. Rellena `credit`/`license` de cada foto real en `fauna.json`.
 
-### ⚖️ Licencias de imágenes (importante)
+### ⚖️ Licencias de imágenes
 
-**Verifica la licencia de cada imagen** antes de publicar. No empaquetes ninguna
-imagen sin licencia compatible (CC0/CC BY/dominio público/propia).
+El titular del proyecto **confirma los derechos de uso y publicación** de las
+imágenes incluidas; cada entrada conserva su `credit` de origen en `fauna.json`.
+Si en el futuro añades nuevas imágenes, asegúrate igualmente de tener sus derechos
+(CC0/CC BY/dominio público/propias) y declara `credit`/`license`.
 
 ### Modo generativo (opcional, desactivado por defecto)
 
