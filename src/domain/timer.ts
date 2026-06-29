@@ -108,8 +108,6 @@ export class PomodoroEngine {
   private runStartedAt: number | null = null;
   /** Tiempo ya acumulado en esta fase antes del segmento actual (ms). */
   private elapsedBeforeMs = 0;
-  /** Marca de pared (epoch ms) del inicio de la fase, para el historial. */
-  private phaseStartWallClock = 0;
 
   constructor(config: Partial<EngineConfig> = {}, now: Clock = Date.now) {
     this.config = { ...DEFAULT_CONFIG, ...config };
@@ -351,15 +349,11 @@ export class PomodoroEngine {
   private beginRun(): void {
     this.runStartedAt = this.now();
     this.elapsedBeforeMs = 0;
-    if (this.phaseStartWallClock === 0) {
-      this.phaseStartWallClock = Date.now();
-    }
   }
 
   private clearTiming(): void {
     this.runStartedAt = null;
     this.elapsedBeforeMs = 0;
-    this.phaseStartWallClock = 0;
   }
 
   private setStatus(status: Status): void {

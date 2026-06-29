@@ -2,6 +2,7 @@
 import { useAppStore } from "../state/store";
 import { useT } from "../hooks/useT";
 import { formatDuration } from "../lib/format";
+import type { Language } from "../domain/types";
 
 function Stat({ label, value }: { label: string; value: string }) {
   return (
@@ -12,11 +13,18 @@ function Stat({ label, value }: { label: string; value: string }) {
   );
 }
 
-const DAY_LABELS = ["L", "M", "X", "J", "V", "S", "D"];
+/** Abreviatura del día de la semana derivada de la fecha real (no de un índice fijo). */
+function dayAbbr(dateStr: string, lang: Language): string {
+  const [y, m, d] = dateStr.split("-").map(Number);
+  return new Intl.DateTimeFormat(lang === "es" ? "es-CO" : "en-US", {
+    weekday: "narrow",
+  }).format(new Date(y, m - 1, d));
+}
 
 export function StatsPanel() {
   const t = useT();
   const stats = useAppStore((s) => s.stats);
+  const lang = useAppStore((s) => s.settings.appearance.language);
 
   if (!stats || stats.totalCompletedFocus === 0) {
     return (
@@ -51,7 +59,7 @@ export function StatsPanel() {
         {t.stats.week}
       </h3>
       <div className="flex items-end justify-between gap-2" style={{ height: 140 }}>
-        {stats.week.map((day, i) => {
+        {stats.week.map((day) => {
           const h = (day.completedFocus / maxFocus) * 100;
           return (
             <div key={day.date} className="flex flex-1 flex-col items-center gap-1">
@@ -65,7 +73,7 @@ export function StatsPanel() {
                 />
               </div>
               <span className="text-xs text-gray-500 dark:text-gray-400">
-                {DAY_LABELS[i]}
+                {dayAbbr(day.date, lang)}
               </span>
             </div>
           );

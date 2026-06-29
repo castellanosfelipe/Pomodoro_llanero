@@ -59,7 +59,8 @@ export class GenerativeProvider implements ImageProvider {
     const animal = await this.base.next();
     if (!animal) return null;
 
-    const fullPrompt = `${this.settings.prompt}. ${animal.commonName.es} (${animal.scientificName})`;
+    const species = animal.scientificName ? ` (${animal.scientificName})` : "";
+    const fullPrompt = `${this.settings.prompt}. ${animal.commonName.es}${species}`;
     let imagePath: string | null = null;
     try {
       imagePath = await this.generate({

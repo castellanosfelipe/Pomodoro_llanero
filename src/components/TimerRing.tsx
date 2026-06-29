@@ -14,12 +14,7 @@ export function TimerRing({ engine }: { engine: EngineState }) {
     engine.durationMs > 0 ? engine.elapsedMs / engine.durationMs : 0;
   const dashoffset = C * (1 - Math.min(1, Math.max(0, progress)));
 
-  const phaseLabel =
-    engine.status === "paused"
-      ? t.phase.paused
-      : engine.status === "idle"
-        ? t.phase[engine.phase]
-        : t.phase[engine.phase];
+  const phaseLabel = engine.status === "paused" ? t.phase.paused : t.phase[engine.phase];
 
   return (
     <div
