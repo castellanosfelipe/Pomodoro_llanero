@@ -1,14 +1,21 @@
 /**
- * Pantalla de descanso: la fauna del Llano es la protagonista. Muestra la
- * imagen del animal con su nombre común, nombre científico y un dato curioso.
+ * Pantalla de descanso con horizonte llanero.
+ * La fauna ocupa el cielo; info del animal y controles en la zona de tierra.
  */
 import { controller } from "../state/controller";
 import { useAppStore } from "../state/store";
 import { useT } from "../hooks/useT";
 import { formatClock } from "../lib/format";
 import { assetUrl } from "../lib/asset";
+import { FaunaCompanion } from "./FaunaCompanion";
+import { PalmaLlanera } from "./fauna/PalmaLlanera";
+import type { DayState } from "../hooks/useDayState";
 
-export function BreakScreen() {
+interface BreakScreenProps {
+  dayState: DayState;
+}
+
+export function BreakScreen({ dayState }: BreakScreenProps) {
   const t = useT();
   const engine = useAppStore((s) => s.engine);
   const animal = useAppStore((s) => s.animal);
@@ -19,73 +26,126 @@ export function BreakScreen() {
   const phaseLabel = t.phase[engine.phase];
 
   return (
-    <div className="animate-fade-in relative flex flex-1 flex-col items-center justify-center overflow-hidden p-6 text-white">
-      {/* Imagen del animal */}
-      {animal && (
-        <img
-          src={assetUrl(animal.imagePath)}
-          alt={animal.commonName[lang]}
-          className={
-            fauna.fullScreenOnBreak
-              ? "absolute inset-0 h-full w-full object-cover"
-              : "max-h-[42vh] rounded-2xl object-contain shadow-2xl"
-          }
-        />
-      )}
-      {/* Velo para legibilidad sobre la imagen a pantalla completa */}
-      {fauna.fullScreenOnBreak && (
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/40" />
-      )}
+    <div className="flex h-full flex-col">
+      {/* ZONA DE CIELO */}
+      <div
+        className="sky-zone relative flex flex-1 flex-col items-center justify-end overflow-hidden pb-2 pt-4"
+        style={{ flexBasis: "62%" }}
+      >
+        {/* Imagen del animal (pantalla completa opcional) */}
+        {animal && fauna.fullScreenOnBreak && (
+          <>
+            <img
+              src={assetUrl(animal.imagePath)}
+              alt={animal.commonName[lang]}
+              className="absolute inset-0 h-full w-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          </>
+        )}
 
-      <div className="relative z-10 flex flex-col items-center text-center">
-        <span className="text-xs font-semibold uppercase tracking-widest opacity-80">
-          {phaseLabel} · {formatClock(engine.remainingMs)}
-        </span>
+        {/* Imagen en tarjeta (no pantalla completa) */}
+        {animal && !fauna.fullScreenOnBreak && (
+          <img
+            src={assetUrl(animal.imagePath)}
+            alt={animal.commonName[lang]}
+            className="relative z-10 max-h-[38vh] rounded-2xl object-contain shadow-2xl"
+          />
+        )}
 
+        {/* Si no hay imagen: fauna SVG compañera */}
+        {!animal && (
+          <div className="relative z-10 mt-4">
+            <FaunaCompanion faunaKey={dayState.faunaKey} phase={engine.phase} />
+          </div>
+        )}
+
+        {/* Tiempo restante flotando */}
+        <div
+          className="relative z-10 mt-3 font-timer text-5xl"
+          style={{ color: fauna.fullScreenOnBreak ? "#FFFFFF" : "var(--day-text)" }}
+          role="timer"
+          aria-live="polite"
+          aria-label={`${phaseLabel}: ${formatClock(engine.remainingMs)}`}
+        >
+          {formatClock(engine.remainingMs)}
+        </div>
+
+        {/* Palmas decorativas */}
+        <div className="pointer-events-none absolute bottom-0 left-3 z-0 opacity-25" aria-hidden>
+          <PalmaLlanera height={64} color={dayState.isDark ? "#8B6030" : "#4A6741"} />
+        </div>
+        <div className="pointer-events-none absolute bottom-0 right-3 z-0 opacity-18" aria-hidden>
+          <PalmaLlanera height={50} color={dayState.isDark ? "#8B6030" : "#4A6741"} />
+        </div>
+
+        <div className="horizon-line" aria-hidden />
+      </div>
+
+      {/* ZONA DE TIERRA */}
+      <div
+        className="earth-zone flex flex-col items-center justify-center gap-3 px-5 py-4"
+        style={{ flexBasis: "38%" }}
+      >
+        {/* Nombre y dato curioso del animal */}
         {animal ? (
-          <div className="mt-3 max-w-xl rounded-2xl bg-black/40 p-5 backdrop-blur-sm">
-            <h2 className="text-3xl font-bold">{animal.commonName[lang]}</h2>
+          <div className="text-center">
+            <h2 className="text-lg font-bold" style={{ color: "var(--day-text)" }}>
+              {animal.commonName[lang]}
+            </h2>
             {animal.scientificName && (
-              <p className="mt-1 text-sm italic opacity-90">
-                <span className="sr-only">{t.fauna.scientificName}: </span>
+              <p className="text-xs italic" style={{ color: "var(--day-text-soft)" }}>
                 {animal.scientificName}
               </p>
             )}
             {fauna.showFunFact && animal.funFact && (
-              <p className="mt-3 text-base leading-relaxed opacity-95">
+              <p className="mt-2 max-w-xs text-sm leading-relaxed" style={{ color: "var(--day-text-soft)" }}>
                 <span className="font-semibold">{t.fauna.funFact} </span>
                 {animal.funFact[lang]}
               </p>
             )}
-            {animal.credit && (
-              <p className="mt-2 text-[11px] opacity-60">{animal.credit}</p>
-            )}
           </div>
         ) : (
-          <h2 className="mt-3 text-2xl font-bold">{t.fauna.breakTitle}</h2>
+          <p className="text-sm font-medium" style={{ color: "var(--day-text)" }}>
+            {t.fauna.breakTitle}
+          </p>
         )}
 
-        {/* Controles del descanso */}
-        <div className="mt-6 flex items-center gap-3">
+        {/* Modo actual */}
+        <span
+          className="text-xs font-semibold uppercase tracking-widest"
+          style={{ color: "var(--day-accent)" }}
+        >
+          {phaseLabel}
+        </span>
+
+        {/* Controles */}
+        <div className="flex items-center gap-2">
           <button
             onClick={() => controller.toggle()}
-            className="accent-bg rounded-full px-6 py-2.5 font-semibold shadow-lg transition-transform hover:scale-105 active:scale-95"
+            className="btn-faena"
           >
             {isRunning ? t.controls.pause : t.controls.resume}
           </button>
           <button
             onClick={() => controller.skip()}
-            className="rounded-full border border-white/40 px-5 py-2.5 text-sm font-medium transition-colors hover:bg-white/10"
+            className="btn-secondary"
           >
             {t.controls.skip}
           </button>
           <button
             onClick={() => void controller.pickAnimal()}
-            className="rounded-full border border-white/40 px-5 py-2.5 text-sm font-medium transition-colors hover:bg-white/10"
+            className="btn-secondary"
           >
             {t.fauna.next}
           </button>
         </div>
+
+        {animal?.credit && (
+          <p className="text-[10px] opacity-50" style={{ color: "var(--day-text-soft)" }}>
+            {animal.credit}
+          </p>
+        )}
       </div>
     </div>
   );

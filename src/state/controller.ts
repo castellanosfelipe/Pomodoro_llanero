@@ -161,6 +161,11 @@ export class AppController {
         if (event.to !== "focus") void this.pickAnimal();
         this.updateTicking();
         this.applyBreakBlock(event.to);
+        // Celebración al completar un ciclo (inicio de siesta llanera)
+        if (event.to === "longBreak" && event.reason === "completed") {
+          useAppStore.setState({ showCelebration: true });
+          setTimeout(() => useAppStore.setState({ showCelebration: false }), 3500);
+        }
         break;
 
       case "phaseCompleted":

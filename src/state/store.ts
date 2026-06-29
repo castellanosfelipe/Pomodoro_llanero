@@ -27,7 +27,12 @@ export interface AppState {
   view: View;
   animal: AnimalAsset | null;
   stats: StatsSummary | null;
+  /** Nombre de la tarea en curso (solo en memoria). */
+  currentTask: string;
+  /** Disparado al completar un ciclo — muestra la pantalla de celebración. */
+  showCelebration: boolean;
   setView: (view: View) => void;
+  setCurrentTask: (task: string) => void;
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -37,5 +42,8 @@ export const useAppStore = create<AppState>((set) => ({
   view: "timer",
   animal: null,
   stats: null,
+  currentTask: "",
+  showCelebration: false,
   setView: (view) => set({ view }),
+  setCurrentTask: (currentTask) => set({ currentTask }),
 }));

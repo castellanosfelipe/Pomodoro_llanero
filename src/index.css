@@ -2,53 +2,174 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── SISTEMA DE DÍA LLANERO ─────────────────────────────────────────────
+   Las variables se actualizan por JS (useDayState) cada minuto.
+   Los elementos usan transition de 60s para que el cambio sea imperceptible
+   en el momento pero visible si se abre la app dos horas después.
+   ─────────────────────────────────────────────────────────────────────── */
 :root {
-  --accent: #e07a3f;
+  /* Valor inicial: mañana despejada */
+  --day-canvas:       #FDF6E3;
+  --day-canvas-mid:   #F0E4C2;
+  --day-text:         #2C1810;
+  --day-text-soft:    #6B4226;
+  --day-accent:       #8B4513;
+  --day-sky-from:     #87CEEB;
+  --day-sky-to:       #FDF6E3;
+  --day-horizon-from: #D4A843;
+  --day-horizon-to:   #A8C4D4;
+
+  /* Acento configurable por el usuario */
+  --accent: #C1440E;
+
+  /* Duración de transición entre franjas del día */
+  --day-t: 60s;
 }
 
-html,
-body,
-#root {
+html, body, #root {
   height: 100%;
 }
 
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   user-select: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, sans-serif;
 }
 
-/* Color de acento configurable, expuesto como utilidades. */
-.accent-bg {
-  background-color: var(--accent);
+/* ── UTILIDADES DEL CICLO DEL DÍA ──────────────────────────────────────── */
+.day-canvas {
+  background-color: var(--day-canvas);
+  transition: background-color var(--day-t);
 }
-.accent-text {
-  color: var(--accent);
+.day-text        { color: var(--day-text); transition: color var(--day-t); }
+.day-text-soft   { color: var(--day-text-soft); }
+.day-accent-bg   {
+  background-color: var(--day-accent);
+  transition: background-color var(--day-t);
 }
-.accent-ring {
-  stroke: var(--accent);
+.day-accent-text { color: var(--day-accent); }
+
+/* ── ZONA CIELO ─────────────────────────────────────────────────────────── */
+.sky-zone {
+  background: linear-gradient(
+    180deg,
+    var(--day-sky-from) 0%,
+    var(--day-sky-to)   100%
+  );
+  transition: background var(--day-t);
 }
 
-/* Respeta la preferencia del sistema de reducir movimiento. */
+/* Velo de progreso: va oscureciendo sutilmente según el tiempo transcurrido */
+.sky-progress-veil {
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.12) 100%
+  );
+  pointer-events: none;
+}
+
+/* ── LÍNEA DEL HORIZONTE ────────────────────────────────────────────────── */
+.horizon-line {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    var(--day-horizon-from) 30%,
+    var(--day-horizon-to)   70%,
+    transparent 100%
+  );
+  transition: background var(--day-t);
+}
+
+/* ── ZONA TIERRA ────────────────────────────────────────────────────────── */
+.earth-zone {
+  background-color: var(--day-canvas-mid);
+  transition: background-color var(--day-t);
+}
+
+/* ── TIPOGRAFÍA DEL TIMER ─────────────────────────────────────────────── */
+.font-timer {
+  font-family: "Palatino Linotype", Palatino, Georgia, "Book Antiqua", serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.03em;
+}
+
+/* ── PILL DE MODO ───────────────────────────────────────────────────────── */
+.mode-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.mode-pill-faena     { background: var(--day-accent); color: #fff; }
+.mode-pill-descanso  { background: #3D7AB5; color: #fff; }
+.mode-pill-siesta    { background: #4A6741; color: #fff; }
+
+/* ── BOTÓN PRINCIPAL LLANERO ────────────────────────────────────────────── */
+.btn-faena {
+  background-color: var(--day-accent);
+  color: #fff;
+  border-radius: 14px;
+  padding: 14px 40px;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: background-color var(--day-t), transform 0.12s ease,
+    box-shadow 0.12s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+}
+.btn-faena:hover   { transform: scale(1.025); box-shadow: 0 6px 20px rgba(0,0,0,0.22); }
+.btn-faena:active  { transform: scale(0.97); }
+.btn-faena:disabled { opacity: 0.4; transform: none; }
+
+.btn-secondary {
+  color: var(--day-text-soft);
+  border: 1px solid var(--day-horizon-from);
+  border-radius: 10px;
+  padding: 9px 20px;
+  font-size: 13px;
+  font-weight: 500;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  background: transparent;
+}
+.btn-secondary:hover {
+  background-color: rgba(0, 0, 0, 0.06);
+}
+
+/* ── ACCENT LEGACY (compatibilidad con ajustes / estadísticas) ────────── */
+.accent-bg   { background-color: var(--accent); }
+.accent-text { color: var(--accent); }
+.accent-ring { stroke: var(--accent); }
+
+/* ── REDUCED MOTION ─────────────────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
+  *, *::before, *::after {
+    animation-duration:  0.001ms !important;
     transition-duration: 0.001ms !important;
   }
 }
-
-/* Cuando la app fuerza reduce-motion (ajuste del usuario). */
 .reduce-motion *,
 .reduce-motion *::before,
 .reduce-motion *::after {
-  animation-duration: 0.001ms !important;
+  animation-duration:  0.001ms !important;
   transition-duration: 0.001ms !important;
 }
 
-/* Foco visible para navegación por teclado. */
+/* ── FOCO VISIBLE ───────────────────────────────────────────────────────── */
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
+}
+
+/* ── ANIMACIÓN ENTRADA GENERAL ──────────────────────────────────────────── */
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
 }
