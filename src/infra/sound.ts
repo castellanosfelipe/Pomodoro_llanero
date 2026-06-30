@@ -7,6 +7,8 @@
  * de cada sonido. Respeta el silencio cuando el usuario lo desactiva.
  */
 
+import { assetUrl } from "../lib/asset";
+
 let ctx: AudioContext | null = null;
 function audio(): AudioContext | null {
   if (typeof window === "undefined") return null;
@@ -14,6 +16,47 @@ function audio(): AudioContext | null {
   if (!Ctor) return null;
   if (!ctx) ctx = new Ctor();
   return ctx;
+}
+
+// --- Muestras de audio (archivos .mp3 empaquetados) --------------------------
+const sampleCache = new Map<string, AudioBuffer>();
+const sampleLoading = new Map<string, Promise<AudioBuffer | null>>();
+
+function loadSample(ac: AudioContext, url: string): Promise<AudioBuffer | null> {
+  const cached = sampleCache.get(url);
+  if (cached) return Promise.resolve(cached);
+  const inflight = sampleLoading.get(url);
+  if (inflight) return inflight;
+  const p = (async () => {
+    try {
+      const res = await fetch(assetUrl(url));
+      const buf = await ac.decodeAudioData(await res.arrayBuffer());
+      sampleCache.set(url, buf);
+      return buf;
+    } catch (e) {
+      console.warn("[sound load]", url, e);
+      return null;
+    } finally {
+      sampleLoading.delete(url);
+    }
+  })();
+  sampleLoading.set(url, p);
+  return p;
+}
+
+/** Reproduce un archivo de audio (cacheado tras la primera carga). */
+function playSample(ac: AudioContext, url: string, v: number): void {
+  const start = (buf: AudioBuffer) => {
+    const src = ac.createBufferSource();
+    const gain = ac.createGain();
+    gain.gain.value = Math.min(1, Math.max(0, v));
+    src.buffer = buf;
+    src.connect(gain).connect(ac.destination);
+    src.start();
+  };
+  const cached = sampleCache.get(url);
+  if (cached) start(cached);
+  else void loadSample(ac, url).then((b) => b && start(b));
 }
 
 /** Una nota con envolvente attack/decay sobre el destino maestro. */
@@ -57,6 +100,9 @@ const SOUNDS: Record<string, (ac: AudioContext, v: number) => void> = {
     tone(ac, 880, 0, 0.3, 0.22 * v);
     tone(ac, 440, 0.05, 1.8, 0.1 * v);
   },
+  // Muestras de arpa (clips de 2 s extraídos de pistas reales)
+  arpa1: (ac, v) => playSample(ac, "/sounds/arpa1.mp3", v),
+  arpa2: (ac, v) => playSample(ac, "/sounds/arpa2.mp3", v),
 };
 
 export const AVAILABLE_SOUNDS = Object.keys(SOUNDS);
@@ -66,6 +112,8 @@ export const SOUND_LABELS: Record<string, string> = {
   chime: "Campana",
   harp: "Cuerdas",
   pop: "Pop",
+  arpa1: "Arpa 1",
+  arpa2: "Arpa 2",
 };
 
 export function playEndSound(soundId: string, volume: number): void {
