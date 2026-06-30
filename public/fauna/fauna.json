@@ -47,9 +47,9 @@
         "en": "A crocodile endemic to the Orinoco basin and one of the most endangered reptiles in the Americas; males can exceed 5 metres."
       },
       "category": "reptil",
-      "imagePath": "/fauna/images/caiman-llanero.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder generado (propio)"
+      "imagePath": "/fauna/images/caiman-llanero.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "corocora-roja",
@@ -79,9 +79,9 @@
         "en": "The tallest stork in the Americas, up to 1.4 m tall, with a bare neck and a striking red band at its base."
       },
       "category": "ave",
-      "imagePath": "/fauna/images/jabiru.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder generado (propio)"
+      "imagePath": "/fauna/images/jabiru.jpeg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "tonina",
@@ -127,9 +127,9 @@
         "en": "The largest heron in South America; it fishes by standing motionless in the Llanos' channels and shallows."
       },
       "category": "ave",
-      "imagePath": "/fauna/images/garza-morena.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder generado (propio)"
+      "imagePath": "/fauna/images/garza-morena.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "alcaravan",
@@ -143,9 +143,9 @@
         "en": "Sentinel of the Llanos: it nests on the ground and betrays any intruder with a sharp, insistent call, especially at night."
       },
       "category": "ave",
-      "imagePath": "/fauna/images/alcaravan.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder generado (propio)"
+      "imagePath": "/fauna/images/alcaravan.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "charapa",
@@ -159,9 +159,9 @@
         "en": "The largest river turtle in South America; females nest en masse on the sandbanks during the dry-season arribadas."
       },
       "category": "reptil",
-      "imagePath": "/fauna/images/charapa.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder generado (propio)"
+      "imagePath": "/fauna/images/charapa.jpeg",
+      "credit": "Foto: Fundación Omacha (web)",
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "cachicamo",
@@ -223,9 +223,9 @@
         "en": "It filters water by sweeping its spoon-shaped bill; its pink hue, like a flamingo's, comes from its diet."
       },
       "category": "ave",
-      "imagePath": "/fauna/images/espatula-rosada.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder generado (propio)"
+      "imagePath": "/fauna/images/espatula-rosada.jpeg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "babilla",
@@ -287,9 +287,9 @@
         "en": "A white-faced duck that moves in noisy, whistling flocks across the wetlands; a classic Llanos sight."
       },
       "category": "ave",
-      "imagePath": "/fauna/images/iguasa.svg",
-      "credit": "Placeholder generado",
-      "license": "Placeholder generado (propio)"
+      "imagePath": "/fauna/images/iguasa.jpg",
+      "credit": "Imagen de web — origen sin confirmar",
+      "license": "Uso y publicación autorizados (confirmado por el titular del proyecto)"
     },
     {
       "id": "caribe",
