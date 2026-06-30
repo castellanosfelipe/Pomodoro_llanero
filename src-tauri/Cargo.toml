@@ -1,6 +1,6 @@
 [package]
 name = "pomodoro-llanero"
-version = "0.2.0"
+version = "0.2.1"
 description = "Pomodoro de escritorio local-first con fauna del Llano colombiano"
 authors = ["Felipe Castellanos"]
 license = "MIT"

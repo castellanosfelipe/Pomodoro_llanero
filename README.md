@@ -74,21 +74,24 @@ https://github.com/castellanosfelipe/Pomodoro_llanero/assets/VIDEO.mp4
 
 ## ⬇️ Descargas
 
+**Versión actual: `v0.2.1`**
+
 <div align="center">
 
-[![Descargar para macOS](https://img.shields.io/badge/⬇_Descargar-macOS_(Apple_Silicon_e_Intel)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)
+[![Descargar para macOS](https://img.shields.io/badge/⬇_Descargar-macOS_(Apple_Silicon)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro%20Llanero_0.2.1_aarch64.dmg)
 &nbsp;
-[![Descargar para Windows](https://img.shields.io/badge/⬇_Descargar-Windows_10/11-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)
+[![Descargar para Windows](https://img.shields.io/badge/⬇_Descargar-Windows_10/11-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro%20Llanero_0.2.1_x64-setup.exe)
 
 </div>
 
-| Sistema | Archivo a descargar | Notas |
-|---------|--------------------|-------|
-| 🍎 **macOS Apple Silicon (M1–M4)** | `Pomodoro Llanero_*_aarch64.dmg` | Requiere autorizar la app la primera vez (ver instrucciones) |
-| 🍎 **macOS Intel** | `Pomodoro Llanero_*_x64.dmg` | Igual que arriba |
-| 🪟 **Windows 10/11** | `Pomodoro Llanero_*_x64-setup.exe` (o `.msi`) | Windows SmartScreen → *Más información → Ejecutar de todas formas* |
+| Sistema | Descarga directa |
+|---------|------------------|
+| 🍎 **macOS Apple Silicon (M1–M4)** | [`Pomodoro Llanero_0.2.1_aarch64.dmg`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro%20Llanero_0.2.1_aarch64.dmg) |
+| 🍎 **macOS Intel** | [`Pomodoro Llanero_0.2.1_x64.dmg`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro%20Llanero_0.2.1_x64.dmg) |
+| 🪟 **Windows 10/11 (instalador)** | [`Pomodoro Llanero_0.2.1_x64-setup.exe`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro%20Llanero_0.2.1_x64-setup.exe) |
+| 🪟 **Windows 10/11 (MSI)** | [`Pomodoro Llanero_0.2.1_x64_en-US.msi`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro%20Llanero_0.2.1_x64_en-US.msi) |
 
-> 📦 Todos los instaladores están en la página de **[Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)**.
+> 📦 ¿Otra versión o no cargan los enlaces? Mira todos los instaladores en la página de **[Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)**.
 
 ---
 

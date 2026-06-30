@@ -57,6 +57,6 @@ jobs:
           tagName: ${{ github.ref_name }}
           releaseName: "Pomodoro Llanero ${{ github.ref_name }}"
           releaseBody: "Descarga el instalador para tu plataforma en los adjuntos de abajo (macOS Apple Silicon e Intel, Windows). Los binarios de macOS sin firmar requieren autorizar la app en Ajustes › Privacidad y seguridad."
-          releaseDraft: true
+          releaseDraft: false
           prerelease: false
           args: ${{ matrix.args }}
