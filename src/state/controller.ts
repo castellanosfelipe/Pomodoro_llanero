@@ -210,8 +210,12 @@ export class AppController {
     const endedAt = Date.now();
     const startedAt = this.phaseStartWall || endedAt - actualMs;
     const session: Session = { kind, startedAt, endedAt, plannedMs, actualMs, completed };
-    await getStatsRepo().recordSession(session);
-    await this.refreshStats();
+    try {
+      await getStatsRepo().recordSession(session);
+      await this.refreshStats();
+    } catch (e) {
+      console.warn("[stats record]", e);
+    }
   }
 
   // -------------------------------------------------------------------------

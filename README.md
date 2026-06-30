@@ -18,9 +18,10 @@
 
 - [¿Qué es este proyecto?](#-qué-es-pomodoro-llanero)
 - [Demo en vivo](#-demo-en-vivo)
+- [Descargas](#-descargas)
 - [Características principales](#-características-principales)
 - [Capturas de pantalla](#-capturas-de-pantalla)
-- [Instalación rápida](#-instalación-rápida)
+- [Instalación e instrucciones](#-instalación-e-instrucciones)
 - [Cómo usar](#-cómo-usar)
 - [Arquitectura](#-arquitectura)
 - [Roadmap](#-roadmap)
@@ -53,15 +54,41 @@ Un temporizador **preciso, privado y sereno**. El descanso no te lanza a otra pa
 
 ## 🎬 Demo en vivo
 
-<!-- TODO: grabar un GIF corto (10–15 s) del flujo principal: iniciar faena → fin de faena → aparece la fauna en el descanso → volver a la faena. -->
-<!-- Guardarlo en docs/media/demo.gif y reemplazar el bloque de abajo por:
+<!-- TODO: grabar un video/GIF corto (10–15 s) del flujo principal: iniciar faena → fin de faena (suena el aviso) → aparece la fauna en el descanso → volver a la faena. -->
+<!-- Guardar el archivo en docs/media/ y descomentar el bloque que corresponda: -->
+
+<!-- Opción GIF (se reproduce solo en el README):
 <div align="center">
   <img src="docs/media/demo.gif" alt="Flujo principal: faena, descanso y fauna del Llano" width="700"/>
   <p><em>De la faena al descanso: la fauna del Llano aparece como recompensa.</em></p>
 </div>
 -->
 
-> 🎥 **Demo en preparación.** Mientras tanto, puedes probar la versión web (sin shell nativo) clonando el repo y ejecutando `npm run dev`, o descargar el instalador desde [Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases).
+<!-- Opción video MP4 (GitHub lo reproduce embebido al subirlo a un Release/issue y pegar la URL):
+https://github.com/castellanosfelipe/Pomodoro_llanero/assets/VIDEO.mp4
+-->
+
+> 🎥 **Demo en preparación.** Mientras tanto puedes verlo en vivo: descarga la app (abajo) o clona el repo y ejecuta `npm run dev` para la versión web.
+
+---
+
+## ⬇️ Descargas
+
+<div align="center">
+
+[![Descargar para macOS](https://img.shields.io/badge/⬇_Descargar-macOS_(Apple_Silicon_e_Intel)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)
+&nbsp;
+[![Descargar para Windows](https://img.shields.io/badge/⬇_Descargar-Windows_10/11-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)
+
+</div>
+
+| Sistema | Archivo a descargar | Notas |
+|---------|--------------------|-------|
+| 🍎 **macOS Apple Silicon (M1–M4)** | `Pomodoro Llanero_*_aarch64.dmg` | Requiere autorizar la app la primera vez (ver instrucciones) |
+| 🍎 **macOS Intel** | `Pomodoro Llanero_*_x64.dmg` | Igual que arriba |
+| 🪟 **Windows 10/11** | `Pomodoro Llanero_*_x64-setup.exe` (o `.msi`) | Windows SmartScreen → *Más información → Ejecutar de todas formas* |
+
+> 📦 Todos los instaladores están en la página de **[Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)**.
 
 ---
 
@@ -104,23 +131,25 @@ Un temporizador **preciso, privado y sereno**. El descanso no te lanza a otra pa
 
 ---
 
-## 🚀 Instalación rápida
+## 🚀 Instalación e instrucciones
 
-### Opción A — Usuario final (recomendada)
+### 🍎 macOS (Apple Silicon e Intel)
 
-1. Ve a la página de **[Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases)**.
-2. Descarga el instalador para tu sistema:
-   - **macOS Apple Silicon (M1–M4):** `..._aarch64.dmg`
-   - **macOS Intel:** `..._x64.dmg`
-   - **Windows 10/11:** `..._x64-setup.exe` o `..._x64_en-US.msi`
-3. Instala y abre la app.
+1. Descarga el `.dmg` para tu chip desde **[Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)** (`aarch64` para M1–M4, `x64` para Intel).
+2. Ábrelo y arrastra **Pomodoro Llanero** a la carpeta **Aplicaciones**.
+3. **Primera apertura** — como la app aún no está firmada con Apple, macOS puede decir *"está dañada"* o *"desarrollador no identificado"*. Autorízala **una sola vez** con:
+   ```bash
+   xattr -cr "/Applications/Pomodoro Llanero.app" && open "/Applications/Pomodoro Llanero.app"
+   ```
+4. Listo: a partir de ahí se abre con doble clic como cualquier app.
 
-> 🍏 **macOS — primera apertura.** La app aún no está firmada con Apple, así que macOS puede mostrar *"está dañada / desarrollador no identificado"*. Para autorizarla una sola vez:
-> ```bash
-> xattr -cr "/Applications/Pomodoro Llanero.app" && open "/Applications/Pomodoro Llanero.app"
-> ```
+### 🪟 Windows 10/11
 
-### Opción B — Desde el código fuente
+1. Descarga el instalador `..._x64-setup.exe` (o `..._x64_en-US.msi`) desde **[Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)**.
+2. Ejecútalo. Si aparece **Windows protegió su PC** (SmartScreen), pulsa **Más información → Ejecutar de todas formas**.
+3. Sigue el asistente. La app queda en el menú Inicio.
+
+### 🛠️ Desde el código fuente
 
 #### Prerrequisitos
 

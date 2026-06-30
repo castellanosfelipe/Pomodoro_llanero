@@ -13,4 +13,5 @@ export {
   startTicking,
   stopTicking,
   AVAILABLE_SOUNDS,
+  SOUND_LABELS,
 } from "./sound";

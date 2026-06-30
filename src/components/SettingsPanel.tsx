@@ -6,7 +6,7 @@
 import { controller } from "../state/controller";
 import { useAppStore } from "../state/store";
 import { useT } from "../hooks/useT";
-import { AVAILABLE_SOUNDS } from "../infra";
+import { AVAILABLE_SOUNDS, SOUND_LABELS } from "../infra";
 import {
   Section,
   Row,
@@ -14,10 +14,8 @@ import {
   NumberField,
   SelectField,
   Slider,
-  TextField,
 } from "./ui";
 import { ShortcutInput } from "./ShortcutInput";
-import { saveApiKey } from "../infra/secrets";
 import type {
   Settings,
   TimerSettings,
@@ -26,7 +24,6 @@ import type {
   WindowSettings,
   ShortcutSettings,
   FaunaSettings,
-  GenerativeSettings,
 } from "../domain/types";
 
 export function SettingsPanel() {
@@ -42,8 +39,6 @@ export function SettingsPanel() {
   const win = (p: Partial<WindowSettings>) => patch({ window: { ...s.window, ...p } });
   const sc = (p: Partial<ShortcutSettings>) => patch({ shortcuts: { ...s.shortcuts, ...p } });
   const fauna = (p: Partial<FaunaSettings>) => patch({ fauna: { ...s.fauna, ...p } });
-  const gen = (p: Partial<GenerativeSettings>) =>
-    fauna({ generative: { ...s.fauna.generative, ...p } });
 
   const toggleCategory = (cat: string) => {
     const has = s.fauna.categories.includes(cat);
@@ -109,7 +104,7 @@ export function SettingsPanel() {
         </Row>
         <Row label={t.settings.notifications.sound} htmlFor="soundid">
           <SelectField id="soundid" value={s.notifications.endSoundId}
-            options={AVAILABLE_SOUNDS.map((x) => ({ value: x, label: x }))}
+            options={AVAILABLE_SOUNDS.map((x) => ({ value: x, label: SOUND_LABELS[x] ?? x }))}
             onChange={(v) => notif({ endSoundId: v })} />
         </Row>
         <Row label={t.settings.notifications.volume} htmlFor="vol">
@@ -196,15 +191,6 @@ export function SettingsPanel() {
 
       {/* Fauna del Llano */}
       <Section title={t.settings.sections.fauna}>
-        <Row label={t.settings.fauna.mode} htmlFor="fmode">
-          <SelectField id="fmode" value={s.fauna.mode}
-            options={[
-              { value: "gallery", label: t.settings.fauna.modeGallery },
-              { value: "generative", label: t.settings.fauna.modeGenerative },
-            ]}
-            onChange={(v) => fauna({ mode: v })} />
-        </Row>
-
         <div>
           <span className="text-sm" style={{ color: "var(--day-text)" }}>
             {t.settings.fauna.categories}
@@ -239,43 +225,28 @@ export function SettingsPanel() {
           <Toggle id="fs" label={t.settings.fauna.fullScreen}
             checked={s.fauna.fullScreenOnBreak} onChange={(v) => fauna({ fullScreenOnBreak: v })} />
         </Row>
-
-        {s.fauna.mode === "generative" && (
-          <div className="mt-2 space-y-3 rounded-xl border border-llano-dusk/40 bg-llano-dusk/5 p-4">
-            <p className="text-xs" style={{ color: "var(--day-text)" }}>{t.settings.fauna.generativeWarning}</p>
-            <Row label={t.settings.fauna.backend} htmlFor="backend">
-              <SelectField id="backend" value={s.fauna.generative.backend}
-                options={[
-                  { value: "local", label: t.settings.fauna.backendLocal },
-                  { value: "api", label: t.settings.fauna.backendApi },
-                ]}
-                onChange={(v) => gen({ backend: v })} />
-            </Row>
-            {s.fauna.generative.backend === "api" ? (
-              <>
-                <Row label={t.settings.fauna.apiProvider} htmlFor="prov">
-                  <TextField id="prov" value={s.fauna.generative.apiProvider}
-                    onChange={(v) => gen({ apiProvider: v })} placeholder="openai / stability / …" />
-                </Row>
-                <Row label={t.settings.fauna.apiKey} htmlFor="apikey">
-                  <TextField id="apikey" type="password" value=""
-                    onChange={(v) => void saveApiKey(v)}
-                    placeholder="••••••••" />
-                </Row>
-              </>
-            ) : (
-              <Row label={t.settings.fauna.localModelPath} htmlFor="mpath">
-                <TextField id="mpath" value={s.fauna.generative.localModelPath}
-                  onChange={(v) => gen({ localModelPath: v })} placeholder="/ruta/al/modelo" />
-              </Row>
-            )}
-            <Row label={t.settings.fauna.prompt} htmlFor="prompt">
-              <TextField id="prompt" value={s.fauna.generative.prompt}
-                onChange={(v) => gen({ prompt: v })} />
-            </Row>
-          </div>
-        )}
       </Section>
+
+      {/* Créditos */}
+      <footer className="mt-2 flex items-center justify-center gap-2 border-t pt-5"
+        style={{ borderColor: "var(--day-horizon-from)" }}>
+        <span className="text-xs" style={{ color: "var(--day-text-soft)" }}>
+          Desarrollado por Bairon Felipe Peña Castellanos
+        </span>
+        <a
+          href="https://www.linkedin.com/in/bairon-felipe-pe%C3%B1a-castellanos-ab18411b5"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Perfil de LinkedIn del desarrollador"
+          title="LinkedIn"
+          className="inline-flex h-7 w-7 items-center justify-center rounded-md transition-opacity hover:opacity-80"
+          style={{ backgroundColor: "#0A66C2", color: "#fff" }}
+        >
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.22.79 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+          </svg>
+        </a>
+      </footer>
     </div>
   );
 }
