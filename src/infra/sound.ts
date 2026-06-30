@@ -47,7 +47,7 @@ const SOUNDS: Record<string, (ac: AudioContext, v: number) => void> = {
     tone(ac, 659.25, 0.1, 2.0, 0.16 * v);
     tone(ac, 783.99, 0.2, 2.2, 0.14 * v);
   },
-  // Arpa llanera (~2.3 s)
+  // Cuerdas: arpegio ascendente (~2.3 s)
   harp: (ac, v) => {
     const notes = [392.0, 523.25, 659.25, 783.99, 1046.5, 1318.5, 1567.98];
     notes.forEach((f, i) => tone(ac, f, i * 0.13, 1.2, 0.13 * v, "triangle"));
@@ -64,7 +64,7 @@ export const AVAILABLE_SOUNDS = Object.keys(SOUNDS);
 /** Etiquetas legibles para la UI de ajustes. */
 export const SOUND_LABELS: Record<string, string> = {
   chime: "Campana",
-  harp: "Arpa llanera",
+  harp: "Cuerdas",
   pop: "Pop",
 };
 
