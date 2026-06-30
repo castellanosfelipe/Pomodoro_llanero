@@ -2,9 +2,9 @@
  * Sonidos por síntesis (Web Audio API): timbres de fin y un tic-tac opcional.
  *
  * Se sintetizan en tiempo real para no empaquetar archivos de audio y mantener
- * la app pequeña y 100% offline. Cada timbre de fin **dura al menos 2 segundos**
- * y pasa por un compresor para sonar fuerte y nítido sin saturar. El volumen es
- * configurable; respeta el silencio cuando el usuario lo desactiva.
+ * la app pequeña y 100% offline. Cada timbre de fin dura ~2 segundos. El volumen
+ * del usuario (0–1) escala la ganancia; al máximo se obtiene el diseño original
+ * de cada sonido. Respeta el silencio cuando el usuario lo desactiva.
  */
 
 let ctx: AudioContext | null = null;
@@ -16,79 +16,46 @@ function audio(): AudioContext | null {
   return ctx;
 }
 
-interface Note {
-  /** Frecuencia en Hz (o frecuencia inicial si hay `glideTo`). */
-  f: number;
-  /** Inicio relativo en segundos. */
-  t: number;
-  /** Duración en segundos. */
-  d: number;
-  /** Glissando hasta esta frecuencia (para el canto). */
-  glideTo?: number;
-  type?: OscillatorType;
-  /** Vibrato (profundidad en Hz) — da el carácter de "canto". */
-  vibrato?: number;
+/** Una nota con envolvente attack/decay sobre el destino maestro. */
+function tone(
+  ac: AudioContext,
+  freq: number,
+  start: number,
+  dur: number,
+  gain: number,
+  type: OscillatorType = "sine",
+): void {
+  const osc = ac.createOscillator();
+  const gainNode = ac.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  osc.connect(gainNode);
+  gainNode.connect(ac.destination);
+  const t0 = ac.currentTime + start;
+  gainNode.gain.setValueAtTime(0, t0);
+  gainNode.gain.linearRampToValueAtTime(gain, t0 + 0.03);
+  gainNode.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+  osc.start(t0);
+  osc.stop(t0 + dur + 0.05);
 }
 
-interface SoundDef {
-  notes: Note[];
-  /** Ganancia pico relativa al volumen del usuario (0–1). */
-  peak: number;
-}
-
-/**
- * Timbres de fin. Todos duran ≥ 2 s. El "caporal" evoca un canto de trabajo de
- * llano: una melodía silbada con glissandos y vibrato sobre escala pentatónica.
- */
-const SOUNDS: Record<string, SoundDef> = {
-  chime: {
-    peak: 0.85,
-    notes: [
-      { f: 880, t: 0.0, d: 1.2 },
-      { f: 1320, t: 0.18, d: 1.4 },
-      { f: 880, t: 1.0, d: 1.2 },
-      { f: 1320, t: 1.2, d: 1.4 },
-    ],
+/** Reproductores de fin. `v` es el volumen del usuario (0–1). */
+const SOUNDS: Record<string, (ac: AudioContext, v: number) => void> = {
+  // Campana clásica (~2.2 s)
+  chime: (ac, v) => {
+    tone(ac, 523.25, 0, 2.0, 0.18 * v);
+    tone(ac, 659.25, 0.1, 2.0, 0.16 * v);
+    tone(ac, 783.99, 0.2, 2.2, 0.14 * v);
   },
-  bell: {
-    peak: 0.9,
-    notes: [
-      { f: 660, t: 0.0, d: 1.6 },
-      { f: 990, t: 0.12, d: 1.6 },
-      { f: 1320, t: 0.24, d: 1.8 },
-      { f: 660, t: 1.1, d: 1.4 },
-      { f: 990, t: 1.2, d: 1.4 },
-    ],
+  // Arpa llanera (~2.3 s)
+  harp: (ac, v) => {
+    const notes = [392.0, 523.25, 659.25, 783.99, 1046.5, 1318.5, 1567.98];
+    notes.forEach((f, i) => tone(ac, f, i * 0.13, 1.2, 0.13 * v, "triangle"));
   },
-  marimba: {
-    peak: 0.85,
-    notes: [
-      { f: 523, t: 0.0, d: 0.7, type: "triangle" },
-      { f: 659, t: 0.22, d: 0.7, type: "triangle" },
-      { f: 784, t: 0.44, d: 0.8, type: "triangle" },
-      { f: 1047, t: 0.66, d: 1.0, type: "triangle" },
-      { f: 784, t: 1.2, d: 0.7, type: "triangle" },
-      { f: 1047, t: 1.5, d: 1.0, type: "triangle" },
-    ],
-  },
-  soft: {
-    peak: 0.8,
-    notes: [
-      { f: 523, t: 0.0, d: 1.6, type: "sine" },
-      { f: 659, t: 0.4, d: 1.6, type: "sine" },
-      { f: 784, t: 0.8, d: 1.6, type: "sine" },
-    ],
-  },
-  // Canto de caporal: melodía silbada, melismática, con glissandos y vibrato.
-  caporal: {
-    peak: 1.0,
-    notes: [
-      { f: 587, t: 0.0, d: 0.5, glideTo: 880, type: "sine", vibrato: 6 },
-      { f: 880, t: 0.45, d: 0.7, glideTo: 784, type: "sine", vibrato: 9 },
-      { f: 784, t: 1.1, d: 0.5, glideTo: 659, type: "sine", vibrato: 7 },
-      { f: 659, t: 1.55, d: 0.9, glideTo: 587, type: "sine", vibrato: 10 },
-      { f: 587, t: 2.35, d: 0.6, type: "sine", vibrato: 5 },
-    ],
+  // Pop con cola (~2 s)
+  pop: (ac, v) => {
+    tone(ac, 880, 0, 0.3, 0.22 * v);
+    tone(ac, 440, 0.05, 1.8, 0.1 * v);
   },
 };
 
@@ -96,68 +63,17 @@ export const AVAILABLE_SOUNDS = Object.keys(SOUNDS);
 
 /** Etiquetas legibles para la UI de ajustes. */
 export const SOUND_LABELS: Record<string, string> = {
-  chime: "Campanilla",
-  bell: "Campana",
-  marimba: "Marimba",
-  soft: "Suave",
-  caporal: "Canto de caporal",
+  chime: "Campana",
+  harp: "Arpa llanera",
+  pop: "Pop",
 };
 
 export function playEndSound(soundId: string, volume: number): void {
   const ac = audio();
   if (!ac || volume <= 0) return;
   if (ac.state === "suspended") void ac.resume();
-
-  const def = SOUNDS[soundId] ?? SOUNDS.chime;
-  const now = ac.currentTime;
-  const v = Math.min(1, Math.max(0, volume));
-
-  // Cadena maestra: compresor + ganancia → más volumen percibido sin saturar.
-  const comp = ac.createDynamicsCompressor();
-  comp.threshold.value = -18;
-  comp.knee.value = 12;
-  comp.ratio.value = 4;
-  comp.attack.value = 0.003;
-  comp.release.value = 0.25;
-  const master = ac.createGain();
-  master.gain.value = def.peak * (0.5 + v * 0.5); // base alta + escala por volumen
-  comp.connect(master).connect(ac.destination);
-
-  for (const n of def.notes) {
-    const osc = ac.createOscillator();
-    const gain = ac.createGain();
-    osc.type = n.type ?? "sine";
-
-    const start = now + n.t;
-    const end = start + n.d;
-
-    // Frecuencia (con glissando opcional).
-    osc.frequency.setValueAtTime(n.f, start);
-    if (n.glideTo !== undefined) {
-      osc.frequency.linearRampToValueAtTime(n.glideTo, end);
-    }
-
-    // Vibrato opcional para el carácter de canto.
-    if (n.vibrato) {
-      const lfo = ac.createOscillator();
-      const lfoGain = ac.createGain();
-      lfo.frequency.value = 5.5;
-      lfoGain.gain.value = n.vibrato;
-      lfo.connect(lfoGain).connect(osc.frequency);
-      lfo.start(start);
-      lfo.stop(end + 0.05);
-    }
-
-    // Envolvente.
-    gain.gain.setValueAtTime(0, start);
-    gain.gain.linearRampToValueAtTime(1, start + 0.02);
-    gain.gain.setValueAtTime(1, end - 0.08 > start ? end - 0.08 : start);
-    gain.gain.exponentialRampToValueAtTime(0.0001, end);
-
-    osc.connect(gain).connect(comp);
-    osc.start(start);
-    osc.stop(end + 0.05);
-  }
+  const play = SOUNDS[soundId] ?? SOUNDS.chime;
+  play(ac, Math.min(1, Math.max(0, volume)));
 }
 
 let tickTimer: number | null = null;
