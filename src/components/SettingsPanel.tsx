@@ -247,7 +247,7 @@ export function SettingsPanel() {
       <footer className="mt-2 flex items-center justify-center gap-2 border-t pt-5"
         style={{ borderColor: "var(--day-horizon-from)" }}>
         <span className="text-xs" style={{ color: "var(--day-text-soft)" }}>
-          Desarrollado por Bairon Felipe Peña Castellanos
+          Desarrollado por Felipe Peña
         </span>
         <a
           href="https://www.linkedin.com/in/bairon-felipe-pe%C3%B1a-castellanos-ab18411b5"
