@@ -54,6 +54,17 @@ Un temporizador **preciso, privado y sereno**. El descanso no te lanza a otra pa
 
 ## 🎬 Demo en vivo
 
+<div align="center">
+
+[![Probar en vivo](https://img.shields.io/badge/▶_Probar_en_vivo-Abrir_en_el_navegador-4A6741?style=for-the-badge&logo=googlechrome&logoColor=white)](https://castellanosfelipe.github.io/Pomodoro_llanero/)
+
+</div>
+
+> 🌐 **Pruébalo sin instalar nada:** <https://castellanosfelipe.github.io/Pomodoro_llanero/>
+> Es la misma app en versión web (local-first: tus datos quedan en el navegador
+> vía `localStorage`). Las funciones nativas —bandeja, bloqueo de pantalla,
+> notificaciones del sistema— solo están en la app de escritorio (abajo).
+
 <!-- TODO: grabar un video/GIF corto (10–15 s) del flujo principal: iniciar faena → fin de faena (suena el aviso) → aparece la fauna en el descanso → volver a la faena. -->
 <!-- Guardar el archivo en docs/media/ y descomentar el bloque que corresponda: -->
 
@@ -63,12 +74,6 @@ Un temporizador **preciso, privado y sereno**. El descanso no te lanza a otra pa
   <p><em>De la faena al descanso: la fauna del Llano aparece como recompensa.</em></p>
 </div>
 -->
-
-<!-- Opción video MP4 (GitHub lo reproduce embebido al subirlo a un Release/issue y pegar la URL):
-https://github.com/castellanosfelipe/Pomodoro_llanero/assets/VIDEO.mp4
--->
-
-> 🎥 **Demo en preparación.** Mientras tanto puedes verlo en vivo: descarga la app (abajo) o clona el repo y ejecuta `npm run dev` para la versión web.
 
 ---
 
