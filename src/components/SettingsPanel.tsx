@@ -6,7 +6,7 @@
 import { controller } from "../state/controller";
 import { useAppStore } from "../state/store";
 import { useT } from "../hooks/useT";
-import { AVAILABLE_SOUNDS, SOUND_LABELS } from "../infra";
+import { AVAILABLE_SOUNDS, SOUND_LABELS, playEndSound } from "../infra";
 import {
   Section,
   Row,
@@ -103,9 +103,25 @@ export function SettingsPanel() {
             checked={s.notifications.endSound} onChange={(v) => notif({ endSound: v })} />
         </Row>
         <Row label={t.settings.notifications.sound} htmlFor="soundid">
-          <SelectField id="soundid" value={s.notifications.endSoundId}
-            options={AVAILABLE_SOUNDS.map((x) => ({ value: x, label: SOUND_LABELS[x] ?? x }))}
-            onChange={(v) => notif({ endSoundId: v })} />
+          <div className="flex items-center gap-2">
+            <SelectField id="soundid" value={s.notifications.endSoundId}
+              options={AVAILABLE_SOUNDS.map((x) => ({ value: x, label: SOUND_LABELS[x] ?? x }))}
+              onChange={(v) => notif({ endSoundId: v })} />
+            <button
+              type="button"
+              onClick={() =>
+                playEndSound(
+                  s.notifications.endSoundId,
+                  s.notifications.endSoundVolume || 0.7,
+                )
+              }
+              className="settings-pill rounded-full px-3 py-1 text-sm"
+              aria-label={t.settings.notifications.test}
+              title={t.settings.notifications.test}
+            >
+              ▶ {t.settings.notifications.test}
+            </button>
+          </div>
         </Row>
         <Row label={t.settings.notifications.volume} htmlFor="vol">
           <Slider id="vol" value={s.notifications.endSoundVolume}

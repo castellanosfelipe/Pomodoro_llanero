@@ -69,6 +69,7 @@ export const es = {
       endSound: "Sonido al terminar",
       volume:   "Volumen",
       sound:    "Sonido",
+      test:     "Probar",
       ticking:  "Tic-tac durante la faena",
     },
     appearance: {

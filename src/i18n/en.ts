@@ -71,6 +71,7 @@ export const en: Dict = {
       endSound: "Sound on finish",
       volume:   "Volume",
       sound:    "Sound",
+      test:     "Test",
       ticking:  "Ticking during work",
     },
     appearance: {
