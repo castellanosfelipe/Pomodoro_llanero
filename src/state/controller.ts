@@ -131,11 +131,9 @@ export class AppController {
       JSON.stringify(previous.fauna) !== JSON.stringify(this.settings.fauna);
     if (faunaChanged) await this.rebuildProvider();
 
-    // Si el usuario desactiva blockOnBreak mientras hay un descanso activo, salir.
-    if (!this.settings.window.blockOnBreak && this.breakBlocked) {
-      this.breakBlocked = false;
-      void exitBreakBlock(this.settings.window.alwaysOnTop);
-    }
+    // Si el usuario cambia blockOnBreak durante un descanso, aplicar en caliente
+    // (entrar o salir del bloqueo según corresponda).
+    this.applyBreakBlock(this.engine.getState().phase);
 
     // Tic-tac y persistencia.
     this.updateTicking();
@@ -263,7 +261,9 @@ export class AppController {
   }
 
   private async applyWindowSettings(): Promise<void> {
-    await setAlwaysOnTop(this.settings.window.alwaysOnTop);
+    // Durante el bloqueo del descanso la ventana debe seguir siempre encima;
+    // la preferencia del usuario se restaura al salir (exitBreakBlock).
+    if (!this.breakBlocked) await setAlwaysOnTop(this.settings.window.alwaysOnTop);
     await setAutostart(this.settings.window.startOnLogin);
   }
 
