@@ -4,7 +4,7 @@
   <h1>Pomodoro Llanero</h1>
   <p><strong>Concéntrate al ritmo de la sabana: un temporizador Pomodoro de escritorio que premia cada descanso con la fauna del Llano colombiano.</strong></p>
 
-  ![Version](https://img.shields.io/badge/version-0.2.0-blue)
+  ![Version](https://img.shields.io/badge/version-0.3.0-blue)
   ![Status](https://img.shields.io/badge/status-beta-green)
   ![License](https://img.shields.io/badge/license-MIT-orange)
   ![Platform](https://img.shields.io/badge/plataforma-macOS%20%7C%20Windows-lightgrey)
@@ -79,22 +79,29 @@ Un temporizador **preciso, privado y sereno**. El descanso no te lanza a otra pa
 
 ## ⬇️ Descargas
 
-**Versión actual: `v0.2.1`**
+**Versión actual: `v0.3.0`**
 
 <div align="center">
 
-[![Descargar para macOS](https://img.shields.io/badge/⬇_Descargar-macOS_(Apple_Silicon)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro.Llanero_0.2.1_aarch64.dmg)
+[![Descargar para macOS](https://img.shields.io/badge/⬇_Descargar-macOS_(Apple_Silicon)-000000?style=for-the-badge&logo=apple&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.3.0/Pomodoro.Llanero_0.3.0_aarch64.dmg)
 &nbsp;
-[![Descargar para Windows](https://img.shields.io/badge/⬇_Descargar-Windows_10/11-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro.Llanero_0.2.1_x64-setup.exe)
+[![Descargar para Windows](https://img.shields.io/badge/⬇_Descargar-Windows_10/11-0078D6?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.3.0/Pomodoro.Llanero_0.3.0_x64-setup.exe)
 
 </div>
 
 | Sistema | Descarga directa |
 |---------|------------------|
-| 🍎 **macOS Apple Silicon (M1–M4)** | [`Pomodoro.Llanero_0.2.1_aarch64.dmg`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro.Llanero_0.2.1_aarch64.dmg) |
-| 🍎 **macOS Intel** | [`Pomodoro.Llanero_0.2.1_x64.dmg`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro.Llanero_0.2.1_x64.dmg) |
-| 🪟 **Windows 10/11 (instalador)** | [`Pomodoro.Llanero_0.2.1_x64-setup.exe`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro.Llanero_0.2.1_x64-setup.exe) |
-| 🪟 **Windows 10/11 (MSI)** | [`Pomodoro.Llanero_0.2.1_x64_en-US.msi`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.2.1/Pomodoro.Llanero_0.2.1_x64_en-US.msi) |
+| 🍎 **macOS Apple Silicon (M1–M4)** | [`Pomodoro.Llanero_0.3.0_aarch64.dmg`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.3.0/Pomodoro.Llanero_0.3.0_aarch64.dmg) |
+| 🍎 **macOS Intel** | [`Pomodoro.Llanero_0.3.0_x64.dmg`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.3.0/Pomodoro.Llanero_0.3.0_x64.dmg) |
+| 🪟 **Windows 10/11 (instalador)** | [`Pomodoro.Llanero_0.3.0_x64-setup.exe`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.3.0/Pomodoro.Llanero_0.3.0_x64-setup.exe) |
+| 🪟 **Windows 10/11 (MSI)** | [`Pomodoro.Llanero_0.3.0_x64_en-US.msi`](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/download/v0.3.0/Pomodoro.Llanero_0.3.0_x64_en-US.msi) |
+
+> 🆕 **Novedades v0.3.0** — El **modo bloqueo del descanso** ahora bloquea de
+> verdad: la ventana se muestra aunque esté en la bandeja, cubre la pantalla
+> actual (sin crear un espacio nuevo en macOS), queda siempre encima en todos
+> los escritorios y **recupera el foco** si intentas cambiar de app con
+> Cmd/Alt+Tab. Se activa en Ajustes → Ventana → *Bloquear pantalla durante el
+> descanso*.
 
 > 📦 ¿Otra versión o no cargan los enlaces? Mira todos los instaladores en la página de **[Releases](https://github.com/castellanosfelipe/Pomodoro_llanero/releases/latest)**.
 
@@ -108,6 +115,7 @@ Un temporizador **preciso, privado y sereno**. El descanso no te lanza a otra pa
 | 🦫 **Fauna del Llano** | En cada descanso aparece un animal distinto —**sin repetir** hasta agotar el set de 22 especies— con nombre común, científico y un dato curioso |
 | 🔒 **Local-first y privado** | Funciona sin conexión, sin cuentas y **sin telemetría**. Tus datos nunca salen de tu equipo |
 | 🌅 **Identidad llanera viva** | La interfaz respira con el día (amanecer, mediodía, ocaso, noche), con vocabulario propio —*faena*, *descanso*, *siesta llanera*— y fauna ilustrada |
+| 🛡️ **Modo bloqueo en el descanso** | Opcional: al llegar el descanso, la app toma la pantalla (pantalla completa, siempre encima, en todos los escritorios) y recupera el foco si intentas cambiar de app, hasta que el descanso termina |
 | ⚙️ **Totalmente configurable** | Duraciones, ciclos, auto-inicio, modo estricto, tema, idioma (ES/EN), bandeja del sistema, inicio con el equipo y atajos de teclado |
 | 📊 **Estadísticas y rachas** | Faenas completadas, tiempo de foco, rachas y cumplimiento de meta diaria, con vista diaria y semanal |
 
@@ -260,7 +268,7 @@ Para el detalle de decisiones de diseño, ver [`docs/DECISIONS.md`](docs/DECISIO
 - [x] Ajustes completos: duraciones, modo estricto, tema, idioma ES/EN, atajos
 - [x] Bandeja del sistema, notificaciones nativas e inicio con el equipo
 - [x] Estadísticas, rachas y meta diaria (SQLite)
-- [x] Bloqueo de pantalla durante el descanso (pantalla completa)
+- [x] Bloqueo de pantalla durante el descanso (modo quiosco real desde v0.3.0: se muestra desde la bandeja, cubre el escritorio actual y recupera el foco)
 - [x] Rediseño con identidad llanera (ciclo del día, fauna ilustrada)
 - [x] Instaladores para macOS (Apple Silicon + Intel) y Windows
 
